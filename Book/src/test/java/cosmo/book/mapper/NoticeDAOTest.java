@@ -17,6 +17,10 @@ public class NoticeDAOTest {
 
 	@Autowired
 	private NoticeMapper nMapper;
+	
+	@Autowired
+	private NoticeServiceImpl nService;
+	
 
 	@Test
 	public void NoticeTest() {

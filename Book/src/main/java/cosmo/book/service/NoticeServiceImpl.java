@@ -1,11 +1,12 @@
 package cosmo.book.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cosmo.book.mapper.NoticeMapper;
 import cosmo.book.vo.NoticeVO;
-import lombok.Setter;
 
 @Service
 public class NoticeServiceImpl implements NoticeService{
@@ -14,7 +15,7 @@ public class NoticeServiceImpl implements NoticeService{
 	public NoticeMapper nMapper;
 
 	@Override
-	public NoticeVO selectNotice() {
+	public ArrayList<NoticeVO> selectNotice() {
 		return nMapper.selectNotice();
 	}
 	
