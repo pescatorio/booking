@@ -23,7 +23,6 @@ public class NoticeMapperTest {
 	@Autowired
 	private NoticeMapper nMapper;
 	
-	Criteria cri;
 
 	@Test
 	public void selectNoticeTest() {
@@ -33,11 +32,17 @@ public class NoticeMapperTest {
 	
 	@Test
 	public void getListTest() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("testTitle");
+		cri.setType("title");
 		System.out.println(nMapper.getList(cri));
 	}
 	
 	@Test
 	public void getTotalTest() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("testTitle");
+		cri.setType("title");
 		System.out.println(nMapper.getTotal(cri));
 	}
 	@Test
@@ -60,5 +65,13 @@ public class NoticeMapperTest {
 		nVo.setDeleteFlag("0");
 		nVo.setBuildCode(7);
 		System.out.println(nMapper.updateNotice(nVo));
+	}
+	
+	@Test
+	public void deleteNoticeTest() {
+		NoticeVO nVo=new NoticeVO();
+		nVo.setDeleteFlag("1");
+		nVo.setNo(11);
+		nMapper.deleteFlagNotice(nVo);
 	}
 }

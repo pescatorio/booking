@@ -5,12 +5,11 @@
   
   <mapper namespace="cosmo.book.mapper.NoticeMapper">
   	<select id="selectNotice" resultType="cosmo.book.vo.NoticeVO">
-  		select * from notice where no=#{no}
+  		select * from notice where no=#{no} and build_code=7
   	</select>
   
   <select id="getList" resultType="cosmo.book.vo.NoticeVO">
-		select * 
-		from 
+		select * from 
 		(select ROW_NUMBER() OVER (ORDER BY no desc) row_num, tbl.*
 		    from notice tbl
 		    where 1=1
@@ -21,7 +20,7 @@
 		    <if test="type=='contents' and keyword != ''">
 				and contents like '%'  || #{keyword}  ||  '%'
 		    </if>
-		)
+		) AS list <!-- postgre subquery needs this -->
 		where row_num between #{pageNo} * #{amount}-9 and #{pageNo} * #{amount} 
 	</select>
 	
@@ -32,18 +31,18 @@
 				and title like '%'  || #{keyword}  ||  '%'
 		    </if>
 		    <if test="type=='contents' and keyword != ''">
-				and content like '%'  || #{keyword}  ||  '%'
+				and contents like '%'  || #{keyword}  ||  '%'
 		    </if>
 	</select>
 	<!-- update query -->
 	<update id="updateNotice">
 		update notice
-		set title=#{title}, contents=#{contents}, updated_at=current_date ,build_Code=#{buildCode}
-		where no=#{no}
+		set title=#{title}, contents=#{contents}, updated_at=current_date 
+		where no=#{no} and build_code=7
 	</update>
 	<!-- delete query -->	
 	<update id="deleteFlagNotice">
-		update notice set delete_Flag=#{deleteFlag} where no=#{no}
+		update notice set delete_Flag=#{deleteFlag} where no=#{no} and build_code=7
 	</update>
 	<insert id="insertNotice">
 		INSERT INTO notice(no,title, contents, delete_flag, created_at, updated_at, build_code) VALUES(nextval('notice_seq'),#{title},#{contents},'0',current_date,current_date,7)

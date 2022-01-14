@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/notice/**")
+@RequestMapping("/notice/*")
 public class NoticeBoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(NoticeBoardController.class);
 	
-	@GetMapping("/")
+	@GetMapping("/list")
 	public String list(Model model) throws Exception{
-		logger.info("list...");
+		logger.info("noticeList...");
 		
 		return "layout/notice/list";
 	}

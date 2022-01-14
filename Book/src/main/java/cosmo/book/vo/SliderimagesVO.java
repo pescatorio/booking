@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Repository
-public class SliderImagesVO {
+public class SliderimagesVO {
 
 	private int no;
 	

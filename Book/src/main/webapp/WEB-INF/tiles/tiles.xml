@@ -3,7 +3,6 @@
 <tiles-definitions>
     <definition name="template" template="/WEB-INF/tiles/layouts/template.jsp">
         <put-attribute name="header" value="/WEB-INF/tiles/layouts/header.jsp" />
-        <put-attribute name="left-side" value="/WEB-INF/tiles/layouts/left_side.jsp" />
         <put-attribute name="footer" value="/WEB-INF/tiles/layouts/footer.jsp" />
     </definition>
     <definition name="layout/*" extends="template">

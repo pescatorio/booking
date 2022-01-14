@@ -36,6 +36,8 @@ public class BookingVO {
 	
 	private String bankName;
 	
+	private String bankBranchName;
+	
 	private String bankAccountNumber;
 	
 	private String deleteFlag;

@@ -24,7 +24,7 @@ public class ConsultationVO {
 	
 	private String name;
 	
-	private String password;
+	private String passwd;
 	
 	private String lockFlag;
 	
