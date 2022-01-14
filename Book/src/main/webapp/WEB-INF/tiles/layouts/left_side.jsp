@@ -1,3 +1,3 @@
 <div>
-	left-side
+	<p>left-side</p>
 </div>

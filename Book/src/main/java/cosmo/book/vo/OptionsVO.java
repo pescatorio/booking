@@ -2,6 +2,12 @@ package cosmo.book.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Repository;
+
+import lombok.Data;
+
+@Data
+@Repository
 public class OptionsVO {
 
 	private int no;

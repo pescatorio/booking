@@ -5,6 +5,49 @@
   
   <mapper namespace="cosmo.book.mapper.NoticeMapper">
   	<select id="selectNotice" resultType="cosmo.book.vo.NoticeVO">
-  		select * from notice
+  		select * from notice where no=#{no}
   	</select>
+  
+  <select id="getList" resultType="cosmo.book.vo.NoticeVO">
+		select * 
+		from 
+		(select ROW_NUMBER() OVER (ORDER BY no desc) row_num, tbl.*
+		    from notice tbl
+		    where 1=1
+		    <!-- search keyword -->
+		    <if test="type=='title' and keyword != ''">
+				and title like '%'  || #{keyword}  ||  '%'
+		    </if>
+		    <if test="type=='contents' and keyword != ''">
+				and contents like '%'  || #{keyword}  ||  '%'
+		    </if>
+		)
+		where row_num between #{pageNo} * #{amount}-9 and #{pageNo} * #{amount} 
+	</select>
+	
+	<select id="getTotal" resultType="int">
+	select count(*) from notice
+		where 1=1
+		    <if test="type=='title' and keyword != ''">
+				and title like '%'  || #{keyword}  ||  '%'
+		    </if>
+		    <if test="type=='contents' and keyword != ''">
+				and content like '%'  || #{keyword}  ||  '%'
+		    </if>
+	</select>
+	<!-- update query -->
+	<update id="updateNotice">
+		update notice
+		set title=#{title}, contents=#{contents}, updated_at=current_date ,build_Code=#{buildCode}
+		where no=#{no}
+	</update>
+	<!-- delete query -->	
+	<update id="deleteFlagNotice">
+		update notice set delete_Flag=#{deleteFlag} where no=#{no}
+	</update>
+	<insert id="insertNotice">
+		INSERT INTO notice(no,title, contents, delete_flag, created_at, updated_at, build_code) VALUES(nextval('notice_seq'),#{title},#{contents},'0',current_date,current_date,7)
+	</insert>
+  
+  
   </mapper>

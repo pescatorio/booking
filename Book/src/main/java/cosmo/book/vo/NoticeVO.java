@@ -14,6 +14,8 @@ public class NoticeVO {
 	
 	private String title;
 	
+	private String contents;
+	
 	private String deleteFlag;
 	
 	private Date createdAt;
