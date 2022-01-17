@@ -14,7 +14,7 @@
 <tiles:insertAttribute name="header" />
 
 <!-- content 위치 -->
-<div id="bodyTile"><tiles:insertAttribute name="content" /></div>
+<tiles:insertAttribute name="content" />
 
 <tiles:insertAttribute name="footer" />
 

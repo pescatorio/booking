@@ -16,23 +16,23 @@
 		<div class="carousel-inner"
 			style="width: 100%; height: 500px !important;">
 			<div class="carousel-item active">
-				<img src="../resources/image/image1.jpg" class="d-block w-100"
+				<img src="../resources/image/image1200X700/image1.jpg" class="d-block w-100"
 					alt="image1">
 			</div>
 			<div class="carousel-item">
-				<img src="../resources/image/image2.jpg" class="d-block w-100 "
+				<img src="../resources/image/image1200X700/image2.jpg" class="d-block w-100 "
 					alt="image2">
 			</div>
 			<div class="carousel-item">
-				<img src="../resources/image/image3.jpg" class="d-block w-100"
+				<img src="../resources/image/image1200X700/image3.jpg" class="d-block w-100"
 					alt="image3">
 			</div>
 			<div class="carousel-item">
-				<img src="../resources/image/image4.jpg" class="d-block w-100"
+				<img src="../resources/image/image1200X700/image4.jpg" class="d-block w-100"
 					alt="image4">
 			</div>
 			<div class="carousel-item">
-				<img src="../resources/image/image5.jpg" class="d-block w-100"
+				<img src="../resources/image/image1200X700/image5.jpg" class="d-block w-100"
 					alt="image5">
 			</div>
 		</div>
@@ -60,13 +60,13 @@
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col">
           <div class="card shadow-sm">
-			<img src="../resources/image/room1.jpg" height="150vh" align="middle">			
+			<img src="../resources/image/image500X500/room1.jpg" height="150vh" align="middle">			
             <div class="card-body">
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="roomInfo/page?room_no=701"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                  <a href=""><button type="button" class="btn btn-sm btn-outline-secondary">Edit</button></a>
+                   <a href="consultation/page?room_no=701"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -75,13 +75,13 @@
         </div>
         <div class="col">
           <div class="card shadow-sm">
-			<img src="../resources/image/room2.jpg" height="150vh" align="middle">	            
+			<img src="../resources/image/image500X500/room2.jpg" height="150vh" align="middle">	            
 			<div class="card-body">
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="roomInfo/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                   <a href="consultation/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -90,13 +90,13 @@
         </div>
         <div class="col">
           <div class="card shadow-sm">
-			<img src="../resources/image/room3.jpg" height="150vh" align="middle">	            
+			<img src="../resources/image/image500X500/room3.jpg" height="150vh" align="middle">	            
             <div class="card-body">
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="roomInfo/page?room_no=703"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                   <a href="consultation/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -106,13 +106,13 @@
 
         <div class="col">
           <div class="card shadow-sm">
-			<img src="../resources/image/room4.jpg" height="150vh" align="middle">	            
+			<img src="../resources/image/image500X500/room4.jpg" height="150vh" align="middle">	            
             <div class="card-body">
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="roomInfo/page?room_no=704"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  <a href="consultation/page?room_no=704"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -121,13 +121,13 @@
         </div>
         <div class="col">
           <div class="card shadow-sm">
-			<img src="../resources/image/room5.jpg" height="150vh" align="middle">	            
+			<img src="../resources/image/image500X500/room5.jpg" height="150vh" align="middle">	            
             <div class="card-body">
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="roomInfo/page?room_no=705"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                   <a href="consultation/page?room_no=705"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -136,14 +136,14 @@
         </div>
         <div class="col">
           <div class="card shadow-sm">
-			<img src="../resources/image/room6.jpg" height="150vh" align="middle">	            
+			<img src="../resources/image/image500X500/room6.jpg" height="150vh" align="middle">	            
 
             <div class="card-body">
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="roomInfo/page?room_no=706"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                   <a href="consultation/page?room_no=706"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
