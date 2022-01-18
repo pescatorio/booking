@@ -50,8 +50,8 @@ public class NoticeMapperTest {
 		NoticeVO nVo=new NoticeVO();
 		nVo.setTitle("testTitle");
 		nVo.setContents("testContents");
-		nVo.setDeleteFlag("0");
-		nVo.setBuildCode(7);
+		nVo.setDelete_flag("0");
+		nVo.setBuild_code(7);
 		System.out.println(nMapper.insertNotice(nVo));
 	}
 	
@@ -62,15 +62,15 @@ public class NoticeMapperTest {
 		nVo.setNo(10);
 		nVo.setTitle("testUpdateTitle");
 		nVo.setContents("testUpdateContents");
-		nVo.setDeleteFlag("0");
-		nVo.setBuildCode(7);
+		nVo.setDelete_flag("0");
+		nVo.setBuild_code(7);
 		System.out.println(nMapper.updateNotice(nVo));
 	}
 	
 	@Test
 	public void deleteNoticeTest() {
 		NoticeVO nVo=new NoticeVO();
-		nVo.setDeleteFlag("1");
+		nVo.setDelete_flag("1");
 		nVo.setNo(11);
 		nMapper.deleteFlagNotice(nVo);
 	}

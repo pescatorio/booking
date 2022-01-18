@@ -26,15 +26,15 @@ public class ConsultationVO {
 	
 	private String passwd;
 	
-	private String lockFlag;
+	private String lock_flag;
 	
-	private String deleteFlag;
+	private String delete_flag;
 	
-	private Date createdAt;
+	private Date created_at;
 	
-	private Date updatedAt;
+	private Date updated_at;
 	
-	private int buildCode;
+	private int build_code;
 
 	
 	

@@ -18,9 +18,9 @@ public class OptionsVO {
 	
 	private String activity;
 	
-	private String deleteFlag;
+	private String delete_flag;
 	
-	private Date createdAt;
+	private Date created_at;
 	
-	private Date updatedAt;
+	private Date updated_at;
 }

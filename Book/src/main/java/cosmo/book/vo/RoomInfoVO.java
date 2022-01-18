@@ -12,25 +12,25 @@ public class RoomInfoVO {
 
 	private String no;
 	
-	private String roomNum;
+	private String room_num;
 	
-	private String roomTitle;
+	private String room_title;
 	
 	private int max;
 	
-	private int adultCost;
+	private int adult_cost;
 	
-	private int childCost;
+	private int child_cost;
 	
 	private String explanation;
 	
 	private String images;
 	
-	private String colorCode;
+	private String color_code;
 	
-	private String deleteFlag;
+	private String delete_flag;
 	
-	private Date createdAt;
+	private Date created_at;
 	
-	private Date updatedAt;
+	private Date updated_at;
 }

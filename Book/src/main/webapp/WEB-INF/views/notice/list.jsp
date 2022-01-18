@@ -1,4 +1,5 @@
 <jsp:useBean id="now" class="java.util.Date" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript">
 if('${resMsg}' != ''){
 	alert('${resMsg}');	
@@ -51,31 +52,33 @@ function detail(no){
 						<tbody>
 							<c:forEach var="vo" items="${list}">
 								<c:choose>
-									<c:when test='${vo.size() == 0 }'>
+									<c:when test="${empty vo}">
 										<tr class="odd gradeX">
 											<td colspan='7' align="center" style="width:80vw;">notice is empty</td>
 										</tr>
 									</c:when>
-									<c:when test="${vo.deleteFlag=='1'}">
+									<c:when test="${vo.delete_flag == '1'}">
 										<tr>
-											<td><c:out value='${vo.title}'/></td>
+											<td><c:out value="${vo.title}"/></td>
 											<td>deleted</td> 
 											<td>deleted</td>
-											<td><c:out value="${vo.buildCode}"/></td>
-											<td><c:out value="${vo.createdAt}"/></td>
-											<td><c:out value="${vo.updatedAt}"/></td>
+											<td><c:out value="${vo.build_code}"/></td>
+											<td><c:out value="${vo.created_at}"/></td>
+											<td><c:out value="${vo.updated_at}"/></td>
+											<td><c:out value="${vo.build_code}"/></td>
 										</tr>
 									</c:when>
-									<c:when test="${vo.deleteFlag == '0'}">
+									<c:when test="${vo.delete_flag == '0'}">
 										<tr>
 											<td><c:out value="${vo.title}"/></td>
 											<td onClick=detail("${vo.no}")><a href="#"><c:out value="${vo.title}"/>
-											<c:if test="${today <= vo.createdAt}"><i class="fas fa-plus-square" style="color:#272b2b;"></i></c:if>
+											<c:if test="${today <= vo.created_at}"><i class="fas fa-plus-square" style="color:#272b2b;"></i></c:if>
 											</a><p style="font-weight:bold;"><i class="fas fa-lock" style="color:#272b2b;"></i></p></td>
 											<td><c:out value="${vo.contents}"/></td>
-											<td><c:out value="${vo.buildCode}"/></td>
-											<td><c:out value="${vo.createdAt}"/></td>
-											<td><c:out value="${vo.updatedAt}"/></td>
+											<td><c:out value="${vo.build_code}"/></td>
+											<td><c:out value="${vo.created_at}"/></td>
+											<td><c:out value="${vo.updated_at}"/></td>
+											<td><c:out value="${vo.build_code}"/></td>
 										</tr>
 									</c:when>
 								</c:choose>

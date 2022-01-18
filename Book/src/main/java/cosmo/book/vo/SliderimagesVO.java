@@ -12,17 +12,17 @@ public class SliderimagesVO {
 
 	private int no;
 	
-	private String fileName;
+	private String file_name;
 	
-	private String sortNo;
+	private String sort_no;
 	
 	private String activity;
 	
-	private String deleteFlag;
+	private String delete_flag;
 	
-	private Date createdAt;
+	private Date created_at;
 	
-	private Date updatedAt;
+	private Date updated_at;
 	
-	private String buildCode;
+	private String build_code;
 }

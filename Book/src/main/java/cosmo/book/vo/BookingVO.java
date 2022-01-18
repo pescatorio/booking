@@ -28,23 +28,23 @@ public class BookingVO {
 	
 	private String options;
 	
-	private String paymentFlag;
+	private String payment_flag;
 	
-	private int totalCost;
+	private int total_cost;
 	
-	private String cancelFlag;
+	private String cancel_flag;
 	
-	private String bankName;
+	private String bank_name;
 	
-	private String bankBranchName;
+	private String bankBranch_name;
 	
-	private String bankAccountNumber;
+	private String bank_account_number;
 	
-	private String deleteFlag;
+	private String delete_flag;
 	
-	private Date createdAt;
+	private Date created_at;
 	
-	private Date updatedAt;
+	private Date updated_at;
 	
-	private int buildCode;
+	private int build_code;
 }
