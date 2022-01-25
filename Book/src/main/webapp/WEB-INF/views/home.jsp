@@ -1,8 +1,22 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html; charset=utf-8" %>
+<script type="text/javascript">
+if('${resMsg}' != ''){
+	alert('${resMsg}');	
+}
+function detail(no){
+	document.listForm.action="/notice/detail";
+	document.listForm.no.value=no;
+	document.listForm.submit();
+}
+</script>
+
+<script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
+<!-- scroll box -->
 <main>
-	<script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
-	<!-- scroll box -->
+
 	<div id="carouselExampleIndicators" class="carousel slide"
 		data-ride="carousel">
 		<ol class="carousel-indicators">
@@ -65,8 +79,8 @@
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="roomInfo/page?room_no=701"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                   <a href="consultation/page?room_no=701"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
+                  <a href="roomInfo/page?room_no=701"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
+                   <a href="consultation/page?room_no=701"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -80,8 +94,8 @@
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="roomInfo/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                   <a href="consultation/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
+                  <a href="roomInfo/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
+                   <a href="consultation/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -95,8 +109,8 @@
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="roomInfo/page?room_no=703"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                   <a href="consultation/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
+                  <a href="roomInfo/page?room_no=703"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
+                   <a href="consultation/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -111,8 +125,8 @@
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="roomInfo/page?room_no=704"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                  <a href="consultation/page?room_no=704"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
+                  <a href="roomInfo/page?room_no=704"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
+                  <a href="consultation/page?room_no=704"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -126,8 +140,8 @@
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="roomInfo/page?room_no=705"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                   <a href="consultation/page?room_no=705"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
+                  <a href="roomInfo/page?room_no=705"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
+                   <a href="consultation/page?room_no=705"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -142,8 +156,8 @@
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="roomInfo/page?room_no=706"><button type="button" class="btn btn-sm btn-outline-secondary">Details</button></a>
-                   <a href="consultation/page?room_no=706"><button type="button" class="btn btn-sm btn-outline-secondary">consultation</button></a>
+                  <a href="roomInfo/page?room_no=706"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
+                   <a href="consultation/page?room_no=706"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -157,19 +171,62 @@
 
 		<div class="bg-dark text-secondary px-4 py-5 text-center">
 			<div class="py-5">
-				<h1 class="display-5 fw-bold text-white">Dark mode hero</h1>
+				<h1 class="display-5 fw-bold text-white">Notices</h1>
 				<div class="col-lg-6 mx-auto">
-					<p class="fs-5 mb-4">Quickly design and customize responsive
-						mobile-first sites with Bootstrap, the world's most popular
-						front-end open source toolkit, featuring Sass variables and
-						mixins, responsive grid system, extensive prebuilt components, and
-						powerful JavaScript plugins.</p>
-					<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-						<button type="button"
-							class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Custom
-							button</button>
-						<button type="button" class="btn btn-outline-light btn-lg px-4">Secondary</button>
-					</div>
+					<table class="list">
+						<colgroup>
+							<col style="width: 10%;">
+							<col style="width: 15%;">
+							<col style="width: 30%;">
+							<col style="width: 10%;">
+							<col style="width: 10%;">
+							<col style="width: 10%;">
+							<col style="width: auto;">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>番号</th>
+								<th>題目</th>
+								<th>内容</th>
+								<th>生成日</th>
+								<th>修正日</th>
+								<th>build_code</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="vo" items="${list}">
+								<c:choose>
+									<c:when test="${empty vo}">
+										<tr class="odd gradeX">
+											<td colspan='7' align="center" style="width:80vw;">notice is empty</td>
+										</tr>
+									</c:when>
+									<c:when test="${vo.delete_flag == '1'}">
+										<tr>
+											<td><c:out value="${vo.no}"/></td>
+											<td>deleted</td> 
+											<td>deleted</td>
+											<td><c:out value="${vo.created_at}"/></td>
+											<td><c:out value="${vo.updated_at}"/></td>
+											<td><c:out value="${vo.build_code}"/></td>
+										</tr>
+									</c:when>
+									<c:when test="${vo.delete_flag == '0'}">
+										<tr>
+											<td><c:out value="${vo.no}"/></td>
+											<td onClick=detail("${vo.no}")><a href="#"><c:out value="${vo.title}"/>
+											<c:if test="${today <= vo.created_at}"><i class="fas fa-plus-square" style="color:#272b2b;"></i></c:if>
+											</a><p style="font-weight:bold;"><i class="fas fa-lock" style="color:#272b2b;"></i></p></td>
+											<td><c:out value="${vo.contents}"/></td>
+											<td><c:out value="${vo.created_at}"/></td>
+											<td><c:out value="${vo.updated_at}"/></td>
+											<td><c:out value="${vo.build_code}"/></td>
+										</tr>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

@@ -30,15 +30,8 @@
 		(select ROW_NUMBER() OVER (ORDER BY no desc) row_num, tbl.*
 		    from notice tbl
 		    where 1=1
-		    <!-- search keyword -->
-		    <if test="type=='title' and keyword != ''">
-				and title like '%'  || #{keyword}  ||  '%'
-		    </if>
-		    <if test="type=='contents' and keyword != ''">
-				and contents like '%'  || #{keyword}  ||  '%'
-		    </if>
 		) AS list <!-- postgre subquery needs this -->
-		where row_num between #{pageNo} * #{amount}-5 and #{pageNo} * #{amount} 
+		where row_num between 1  and 5 
 	</select>
 	
 	<select id="getTotal" resultType="int">
@@ -54,15 +47,15 @@
 	<!-- update query -->
 	<update id="updateNotice">
 		update notice
-		set title=#{title}, contents=#{contents}, updated_at=current_date 
+		set title=#{title}, contents=#{contents}, updated_at= CURRENT_TIMESTAMP 
 		where no=#{no} and build_code=7
 	</update>
 	<!-- delete query -->	
 	<update id="deleteFlagNotice">
-		update notice set delete_Flag=#{deleteFlag} where no=#{no} and build_code=7
+		update notice set delete_Flag=#{delete_flag} where no=#{no} and build_code=7
 	</update>
 	<insert id="insertNotice">
-		INSERT INTO notice(no,title, contents, delete_flag, created_at, updated_at, build_code) VALUES(nextval('notice_seq'),#{title},#{contents},'0',current_date,current_date,7)
+		INSERT INTO notice(no,title, contents, delete_flag, created_at, updated_at, build_code) VALUES(nextval('notice_seq'),#{title},#{contents},'0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,7)
 	</insert>
   
   

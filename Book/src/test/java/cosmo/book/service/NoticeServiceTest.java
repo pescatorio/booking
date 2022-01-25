@@ -73,4 +73,9 @@ public class NoticeServiceTest {
 		nService.deleteFlagNotice(nVo);
 	}
 
+	@Test
+	public void getListAtHomeTest() {
+		System.out.println(nService.getListAtHome());
+	}
+	
 }

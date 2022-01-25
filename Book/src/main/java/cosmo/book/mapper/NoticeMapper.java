@@ -14,9 +14,9 @@ public interface NoticeMapper {
 
 	public NoticeVO selectNotice(int no);
 	
-	public NoticeVO getListAtHome(int no);
-	
 	public int getTotal(Criteria cri);
+	
+	public ArrayList<NoticeVO> getListAtHome();
 	
 	public ArrayList <NoticeVO> getList(Criteria cri);
 	

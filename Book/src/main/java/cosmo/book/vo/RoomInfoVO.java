@@ -10,7 +10,7 @@ import lombok.Data;
 @Repository
 public class RoomInfoVO {
 
-	private String no;
+	private int no;
 	
 	private String room_num;
 	
@@ -33,4 +33,6 @@ public class RoomInfoVO {
 	private Date created_at;
 	
 	private Date updated_at;
+	
+	private int build_code;
 }

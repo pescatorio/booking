@@ -36,7 +36,7 @@ public class BookingVO {
 	
 	private String bank_name;
 	
-	private String bankBranch_name;
+	private String bank_branch_code;
 	
 	private String bank_account_number;
 	

@@ -38,12 +38,22 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public int deleteFlagNotice(NoticeVO vo) {
+		if(vo.getDelete_flag().equals("1")) {
+			vo.setDelete_flag("0");
+		}else {
+			vo.setDelete_flag("1");
+		}
 		return nMapper.deleteFlagNotice(vo);
 	}
 
 	@Override
 	public int insertNotice(NoticeVO vo) {
 		return nMapper.insertNotice(vo);
+	}
+
+	@Override
+	public ArrayList<NoticeVO> getListAtHome() {
+		return nMapper.getListAtHome();
 	}
 	
 	

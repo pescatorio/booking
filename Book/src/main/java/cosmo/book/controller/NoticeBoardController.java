@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cosmo.book.service.NoticeService;
 import cosmo.book.service.NoticeServiceImpl;
 import cosmo.book.vo.Criteria;
+import cosmo.book.vo.NoticeVO;
 import cosmo.book.vo.PageNavi;
 
 @Controller
@@ -21,7 +23,7 @@ import cosmo.book.vo.PageNavi;
 public class NoticeBoardController {
 	
 	@Autowired
-	NoticeServiceImpl nService;
+	NoticeService nService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(NoticeBoardController.class);
 	
@@ -35,4 +37,12 @@ public class NoticeBoardController {
 		return "layout/notice/list";
 	}
 	
+	@GetMapping("/detail")
+	public String detail(Criteria cri, Model model, NoticeVO vo) {
+		logger.info("detail....");
+		vo=nService.selectNotice(vo.getNo());
+		model.addAttribute("vo",vo);
+		
+		return "layout/notice/detail";
+	}
 }

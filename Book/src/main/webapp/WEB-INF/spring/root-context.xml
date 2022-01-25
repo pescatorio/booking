@@ -29,5 +29,6 @@
 	<mybatis-spring:scan base-package="cosmo.book.mapper"/>
 	
 	<context:component-scan base-package="cosmo.book.**"></context:component-scan>
+	
 </beans>
 

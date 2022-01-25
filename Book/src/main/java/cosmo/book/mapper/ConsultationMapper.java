@@ -17,7 +17,7 @@ public interface ConsultationMapper {
 	
 	public int getTotal(Criteria cri);
 	
-	public ArrayList <ConsultationVO> getList(Criteria cri);
+	public ArrayList <ConsultationVO> selectConsultationList(Criteria cri);
 	
 	public int updateConsultation(ConsultationVO vo);
 	

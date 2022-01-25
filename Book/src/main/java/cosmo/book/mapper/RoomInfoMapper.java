@@ -1,21 +1,18 @@
 package cosmo.book.mapper;
 
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import cosmo.book.vo.Criteria;
 import cosmo.book.vo.RoomInfoVO;
 
 @Mapper
 public interface RoomInfoMapper {
 
-	public RoomInfoVO selectRoomInfo(int no);
+	public RoomInfoVO selectRoomInfo(String no);
 	
-	public int getTotal(Criteria cri);
-	
-	public ArrayList <RoomInfoVO> getList(Criteria cri);
+	public List<RoomInfoVO> selectRoomInfoList();
 	
 	public int updateRoomInfo(RoomInfoVO vo);
 	

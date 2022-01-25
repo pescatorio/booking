@@ -20,6 +20,7 @@ public class BookingServiceInpl implements BookingService{
 	public BookingVO selectBooking(int no) {
 		return bMapper.selectBooking(no);
 	}
+	
 
 	@Override
 	public int getTotal(Criteria cri) {

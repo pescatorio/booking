@@ -1,12 +1,12 @@
 package cosmo.book.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cosmo.book.mapper.RoomInfoMapper;
-import cosmo.book.vo.Criteria;
 import cosmo.book.vo.RoomInfoVO;
 
 @Service
@@ -15,22 +15,16 @@ public class RoomInfoServiceImpl implements RoomInfoService{
 	@Autowired
 	public RoomInfoMapper rMapper;
 
-
 	@Override
-	public RoomInfoVO selectRoomInfo(int no) {
+	public RoomInfoVO selectRoomInfo(String no) {
 		return rMapper.selectRoomInfo(no);
 	}
 
 	@Override
-	public int getTotal(Criteria cri) {
-		return rMapper.getTotal(cri);
+	public List<RoomInfoVO> selectRoomInfoList() {
+		return rMapper.selectRoomInfoList();
 	}
-
-	@Override
-	public ArrayList<RoomInfoVO> getList(Criteria cri) {
-		return rMapper.getList(cri);
-	}
-
+	
 	@Override
 	public int updateRoomInfo(RoomInfoVO vo) {
 		return rMapper.updateRoomInfo(vo);
@@ -45,7 +39,9 @@ public class RoomInfoServiceImpl implements RoomInfoService{
 	public int insertRoomInfo(RoomInfoVO vo) {
 		return rMapper.insertRoomInfo(vo);
 	}
+
 	
+
 	
 	
 }

@@ -22,6 +22,14 @@ public class ConsultationServiceImpl implements ConsultationService{
 	public ConsultationVO selectConsultation(int no) {
 		return cMapper.selectConsultation(no);
 	}
+	@Override
+	public ConsultationVO selectConsultation(int no,String cName, String cPasswd) {
+		ConsultationVO cVO = cMapper.selectConsultation(no);
+		if(cVO.getName().equals(cName) && cVO.getPasswd().equals(cPasswd)) {
+			return cVO;
+		}
+		return null;
+	}
 
 	@Override
 	public int getTotal(Criteria cri) {
@@ -29,8 +37,8 @@ public class ConsultationServiceImpl implements ConsultationService{
 	}
 
 	@Override
-	public ArrayList<ConsultationVO> getList(Criteria cri) {
-		return cMapper.getList(cri);
+	public ArrayList<ConsultationVO> selectConsultationList(Criteria cri) {
+		return cMapper.selectConsultationList(cri);
 	}
 
 	@Override

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cosmo.book.mapper.RoomInfoMapper">
+  	<select id="selectRoomInfo" resultType="cosmo.book.vo.RoomInfoVO">
+  		select * from  public."room_Info"  where no=#{no}, build_code=7
+  	</select>
+  	
+  	<select id="selectRoomInfoList" resultType="cosmo.book.vo.RoomInfoVO">
+  		select * from public."room_Info"  where build_code=7
+  	</select>
+  
+	<!-- update query -->
+	<update id="updateRoomInfo">
+		update  public."room_Info" 
+		set room_title=#{room_title}, max=#{max},adult_cost =#{adult_cost} , child_cost=#{child_cost} , explanation=#{explanation} ,images= #{images} ,
+		color_code=#{color_code}  , updated_at= CURRENT_TIMESTAMP
+		where room_num=#{room_num} and build_code=7
+	</update>
+	<!-- delete query -->	
+	<update id="deleteFlagRoomInfo">
+		update  public."room_Info"  set delete_flag=#{delete_flag} where no=#{no} and build_code=7
+	</update>
+	<insert id="insertRoomInfo">
+		INSERT INTO  public."room_Info" (no, room_num, room_title, max, adult_cost, child_cost, explanation, images, color_code, delete_flag, created_at, updated_at, build_code) 
+		VALUES(nextval('room_info_seq'),#{room_num},#{room_title},#{max},#{adult_cost},#{child_cost},#{explanation},#{images},'0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 7)
+	</insert>
+  
+  
+  </mapper>

@@ -11,6 +11,8 @@ public interface NoticeService {
 	
 	public int getTotal(Criteria cri);
 	
+	public ArrayList<NoticeVO> getListAtHome();
+	
 	public ArrayList <NoticeVO> getList(Criteria cri);
 	
 	public int updateNotice(NoticeVO vo);
