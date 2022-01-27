@@ -15,7 +15,6 @@
     <!-- admin page -->
     <definition name="admintemplate" template="/WEB-INF/tiles/layouts/admintemplate.jsp">
         <put-attribute name="adminheader" value="/WEB-INF/tiles/layouts/adminheader.jsp" />
-        <put-attribute name="adminfooter" value="/WEB-INF/tiles/layouts/adminfooter.jsp" />
     </definition>
     <definition name="adminlayout/*" extends="admintemplate">
         <put-attribute name="content" value="/WEB-INF/views/{1}.jsp" />

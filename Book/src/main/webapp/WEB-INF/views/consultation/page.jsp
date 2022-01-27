@@ -1,47 +1,25 @@
-<jsp:useBean id="now" class="java.util.Date" />
-
-<script type="text/javascript">
-if('${resMsg}' != ''){
-	alert('${resMsg}');	
-}
-function page(page){
-	document.listForm.action="/consultation/page";
-	document.listForm.pageNo.value=page;
-	document.listForm.submit();
-	
-}
-function detail(no){
-	document.listForm.action="/consultation/detail";
-	document.listForm.no.value=no;
-	document.listForm.submit();
-}
-</script>
-<section class="section__content">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+<section class="section__content">
 	<div id="wrapper">
 		<h2 class="page_title">相談</h2>
 		<div id="upper"></div>
 		<div id="contents">
 			<div class="cell">
 				<div class="data">
-					<table class="list">
+					<table class="list" style="width:90vw;">
 						<colgroup>
-							<col style="width: 8%;">
-							<col style="width: 8%;">
-							<col style="width: 8%;">
+							<col style="width: 20%;">
+							<col style="width: 10%;">
 							<col style="width: 40%;">
-							<col style="width: 8%;">
-							<col style="width: 8%;">
-							<col style="width: 5%;">
+							<col style="width: 10%;">
+							<col style="width: 10%;">
 							<col style="width: auto;">
 						</colgroup>
 						<thead>
 							<tr>
-								<th>no</th>
 								<th>title</th>
 								<th>writer</th>
 								<th>contents</th>
@@ -60,20 +38,61 @@ function detail(no){
 									</c:when>
 									<c:when test="${vo.delete_flag == '1'}">
 										<tr>
-											<td><c:out value="${vo.no}"/></td>
-											<td>deleted</td> 
-											<td>writer</td>
+											<td>
+											
+											<c:if test="${vo.depth>0 }">
+												<c:forEach var='i' begin='0' end='${vo.depth-1 }'>
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+													  <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+													</svg>
+												</c:forEach>
+											</c:if>
+											deleted</td> 
+											<td><c:out value="${vo.name}"/></td>
 											<td>deleted</td>
 											<td><c:out value="${vo.created_at}"/></td>
 											<td><c:out value="${vo.updated_at}"/></td>
 											<td><c:out value="${vo.build_code}"/></td>
-											<td><p>grno:<c:out value="${vo.grno}"/> grgrod:<c:out value="${vo.grgrod}"/> depth:<c:out value="${vo.depth}"/></p></td>
 										</tr>
 									</c:when>
-									<c:when test="${vo.delete_flag == '0'}">
+									<c:when test="${vo.lock_flag == '1'}">
 										<tr>
-											<td><c:out value="${vo.no}"/></td>
-											<td onClick=detail("${vo.no}")><a href="#"><c:out value="${vo.title}"/>
+											<td onClick=detail("${vo.no}")>
+											<c:if test="${vo.depth>0 }">
+												<c:forEach var='i' begin='0' end='${vo.depth-1 }'>
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+													  <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+													</svg>
+												</c:forEach>
+											</c:if>
+											<a href="#">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+												  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"></path>
+												</svg>
+											</a></td>
+											<td><c:out value="${vo.name}"/>
+											<c:if test="${today <= vo.created_at}"><i class="fas fa-plus-square" style="color:#272b2b;"></i></c:if>
+											<p style="font-weight:bold;"><i class="fas fa-lock" style="color:#272b2b;"></i></p></td>
+											<td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+												  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"></path>
+												</svg></td>
+											<td><c:out value="${vo.created_at}"/></td>
+											<td><c:out value="${vo.updated_at}"/></td>
+											<td><c:out value="${vo.build_code}"/></td>
+										</tr>
+									</c:when>
+									<c:when test="${vo.delete_flag == '0' && vo.lock_flag == '0'}">
+										<tr>
+											<td onClick=detail("${vo.no}")>
+											
+											<c:if test="${vo.depth>0 }">
+												<c:forEach var='i' begin='0' end='${vo.depth-1 }'>
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+													  <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+													</svg>
+												</c:forEach>
+											</c:if>
+											<a href="#"><c:out value="${vo.title}"/>
 											<td><c:out value="${vo.name}"/></td>
 											<c:if test="${today <= vo.created_at}"><i class="fas fa-plus-square" style="color:#272b2b;"></i></c:if>
 											</a><p style="font-weight:bold;"><i class="fas fa-lock" style="color:#272b2b;"></i></p></td>
@@ -81,7 +100,6 @@ function detail(no){
 											<td><c:out value="${vo.created_at}"/></td>
 											<td><c:out value="${vo.updated_at}"/></td>
 											<td><c:out value="${vo.build_code}"/></td>
-											<td><p>grno:<c:out value="${vo.grno}"/> grgrod:<c:out value="${vo.grgrod}"/> depth:<c:out value="${vo.depth}"/></p></td>
 										</tr>
 									</c:when>
 								</c:choose>
@@ -136,3 +154,20 @@ function detail(no){
 			</form>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+if('${resMsg}' != ''){
+	alert('${resMsg}');	
+}
+function page(page){
+	document.listForm.action="/consultation/page";
+	document.listForm.pageNo.value=page;
+	document.listForm.submit();
+	
+}
+function detail(no){
+	document.listForm.action="/consultation/detail";
+	document.listForm.no.value=no;
+	document.listForm.submit();
+}
+</script>

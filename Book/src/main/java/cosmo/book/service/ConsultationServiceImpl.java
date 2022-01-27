@@ -23,9 +23,9 @@ public class ConsultationServiceImpl implements ConsultationService{
 		return cMapper.selectConsultation(no);
 	}
 	@Override
-	public ConsultationVO selectConsultation(int no,String cName, String cPasswd) {
+	public ConsultationVO selectConsultation(int no,String cPasswd) {
 		ConsultationVO cVO = cMapper.selectConsultation(no);
-		if(cVO.getName().equals(cName) && cVO.getPasswd().equals(cPasswd)) {
+		if(cVO.getPasswd().equals(cPasswd)) {
 			return cVO;
 		}
 		return null;
@@ -50,10 +50,20 @@ public class ConsultationServiceImpl implements ConsultationService{
 	public int deleteFlagConsultation(ConsultationVO vo) {
 		return cMapper.deleteFlagConsultation(vo);
 	}
+	
+	@Override
+	public int lockFlagConsultation(ConsultationVO vo) {
+		return cMapper.lockFlagConsultation(vo);
+	}
 
 	@Override
 	public int insertConsultation(ConsultationVO vo) {
 		return cMapper.insertConsultation(vo);
+	}
+	
+	@Override
+	public int replyConsultation(ConsultationVO vo) {
+		return cMapper.replyConsultation(vo);
 	}
 	
 	

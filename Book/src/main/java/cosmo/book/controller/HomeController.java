@@ -1,7 +1,5 @@
 package cosmo.book.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cosmo.book.service.NoticeService;
-import cosmo.book.service.NoticeServiceImpl;
+import cosmo.book.service.SliderImagesService;
 
 /**
  * Handles requests for the application home page.
@@ -23,6 +21,8 @@ public class HomeController {
 	
 	@Autowired
 	NoticeService nService;
+	@Autowired
+	SliderImagesService sService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -35,7 +35,7 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		logger.info("home...");
 		model.addAttribute("list",nService.getListAtHome());
-		
+		model.addAttribute("imageList",sService.getSliderimagesListAtHome());
 		return "layout/home";
 	}
 	

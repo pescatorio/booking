@@ -9,7 +9,7 @@ public interface ConsultationService {
 	
 	public ConsultationVO selectConsultation(int no);
 	
-	public ConsultationVO selectConsultation(int no,String cName, String cPasswd);
+	public ConsultationVO selectConsultation(int no,String cPasswd);
 	
 	public int getTotal(Criteria cri);
 	
@@ -19,5 +19,9 @@ public interface ConsultationService {
 	
 	public int deleteFlagConsultation(ConsultationVO vo);
 	
+	public int lockFlagConsultation(ConsultationVO vo);
+	
 	public int insertConsultation(ConsultationVO vo);
+	
+	public int replyConsultation(ConsultationVO vo);
 }

@@ -16,39 +16,25 @@ function detail(no){
 	crossorigin="anonymous"></script>
 <!-- scroll box -->
 <main>
-
 	<div id="carouselExampleIndicators" class="carousel slide"
 		data-ride="carousel">
 		<ol class="carousel-indicators">
 			<li data-target="#carouselExampleIndicators" data-slide-to="0"
 				class="active"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+			<c:forEach var='imageVo2' items='${imageList }' varStatus="status">
+				<li data-target="#carouselExampleIndicators" data-slide-to="${status.count }"></li>
+			</c:forEach>
 		</ol>
 		<div class="carousel-inner"
 			style="width: 100%; height: 500px !important;">
 			<div class="carousel-item active">
-				<img src="../resources/image/image1200X700/image1.jpg" class="d-block w-100"
-					alt="image1">
+				<img src='../resources/image/image1200X700/4a90f371d000ea46901dfb2633ddd3fb066fb4621134f1486c192f432361efdb.jpg' class="d-block w-100">
 			</div>
-			<div class="carousel-item">
-				<img src="../resources/image/image1200X700/image2.jpg" class="d-block w-100 "
-					alt="image2">
+			<c:forEach var='imageVo' items='${imageList }'>
+			<div class="carousel-item ">
+				<img src='../resources/image/image1200X700/<c:out value="${imageVo.file_name}"></c:out>' class="d-block w-100">
 			</div>
-			<div class="carousel-item">
-				<img src="../resources/image/image1200X700/image3.jpg" class="d-block w-100"
-					alt="image3">
-			</div>
-			<div class="carousel-item">
-				<img src="../resources/image/image1200X700/image4.jpg" class="d-block w-100"
-					alt="image4">
-			</div>
-			<div class="carousel-item">
-				<img src="../resources/image/image1200X700/image5.jpg" class="d-block w-100"
-					alt="image5">
-			</div>
+			</c:forEach>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleIndicators"
 			role="button" data-slide="prev"> <span

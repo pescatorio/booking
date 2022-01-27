@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cosmo.book.mapper.SliderImagesMapper">
+  
+  	<select id="selectSliderimages" resultType="cosmo.book.vo.SliderimagesVO">
+		select * from public."slider_images" where build_code=7 order by sort_no
+	</select>
+  	<select id="selectimage" resultType="cosmo.book.vo.SliderimagesVO">
+		select * from public."slider_images" where build_code=7 and no=#{no}
+	</select>
+  
+  <select id="getSliderimagesList" resultType="cosmo.book.vo.SliderimagesVO">
+		select * from 
+		(select ROW_NUMBER() OVER (ORDER BY sort_no DESC) row_num, tbl.*
+		    from slider_images as tbl
+		    where 1=1 and build_code=7
+		    <!-- search keyword -->
+		    <if test="type=='title' and keyword != ''">
+				and title like '%'  || #{keyword}  ||  '%'
+		    </if>
+		    <if test="type=='contents' and keyword != ''">
+				and contents like '%'  || #{keyword}  ||  '%'
+		    </if>
+		) AS list <!-- postgre subquery needs this -->
+		where row_num between #{pageNo} * #{amount}-9 and #{pageNo} * #{amount}  and build_code=7
+	</select>
+	
+	
+  <select id="getSliderimagesListAtHome" resultType="cosmo.book.vo.SliderimagesVO">
+		select * from 
+		(select ROW_NUMBER() OVER (ORDER BY sort_no desc) row_num, tbl.*
+		    from public."slider_images" tbl
+		    where 1=1 and build_code='7' and delete_flag='0' and activity='0'
+		) AS list <!-- postgre subquery needs this -->
+		where row_num between 1  and 5 
+	</select>
+  
+  	<select id="getTotal" resultType="int">
+		select count(*) from slider_images
+			where 1=1 and build_code=7
+			    <if test="type=='title' and keyword != ''">
+					and title like '%'  || #{keyword}  ||  '%'
+			    </if>
+			    <if test="type=='contents' and keyword != ''">
+					and contents like '%'  || #{keyword}  ||  '%'
+			    </if>
+	</select>
+  
+	<!-- update query -->
+	<update id="updateSliderimages">
+	<choose>
+		<when test='activity=="0"'>
+			update  public."slider_images" set activity=#{activity}, 
+			sort_no=(SELECT MAX(sort_no::INTEGER+1)::character varying(10) FROM public."slider_images" where build_code=7), updated_at = CURRENT_TIMESTAMP
+			where no=#{no} and build_code=7
+		</when>
+		<otherwise>
+			update  public."slider_images" set activity=#{activity}, updated_at = CURRENT_TIMESTAMP
+			where no=#{no} and build_code=7
+		</otherwise>
+		</choose>
+	</update>
+	<!-- delete query -->	
+	<update id="deleteFlagSliderimages">
+		update  public."slider_images"  set delete_flag=#{delete_flag} where no=#{no} and build_code=7
+	</update>
+	<!-- lock query -->
+	<insert id="insertSliderimages">
+		 <selectKey resultType="String" keyProperty="sort_no" order="BEFORE">
+	       SELECT (coalesce(MAX(sort_no::INTEGER),0)+1)::character varying(10) FROM public."slider_images" where build_code=7
+    	</selectKey>
+		  	INSERT INTO  public."slider_images" (no, file_name, sort_no, activity, delete_flag, created_at, updated_at, build_code) 
+			VALUES(nextval('slider_images_seq'),#{file_name},#{sort_no},'0','0',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,7)
+	</insert>
+  
+  </mapper>

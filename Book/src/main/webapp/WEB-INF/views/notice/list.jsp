@@ -1,22 +1,7 @@
 <jsp:useBean id="now" class="java.util.Date" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript">
-if('${resMsg}' != ''){
-	alert('${resMsg}');	
-}
-function page(page){
-	document.listForm.action="/notice/list";
-	document.listForm.pageNo.value=page;
-	document.listForm.submit();
-	
-}
-function detail(no){
-	document.listForm.action="/notice/detail";
-	document.listForm.no.value=no;
-	document.listForm.submit();
-}
-</script>
+
 <section class="section__content">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -129,3 +114,20 @@ function detail(no){
 			</form>
 		</div>
 	</div>
+	
+<script type="text/javascript">
+if('${resMsg}' != ''){
+	alert('${resMsg}');	
+}
+function page(page){
+	document.listForm.action="/notice/list";
+	document.listForm.pageNo.value=page;
+	document.listForm.submit();
+	
+}
+function detail(no){
+	document.listForm.action="/notice/detail";
+	document.listForm.no.value=no;
+	document.listForm.submit();
+}
+</script>

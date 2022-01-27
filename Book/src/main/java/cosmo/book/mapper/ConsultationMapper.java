@@ -21,7 +21,11 @@ public interface ConsultationMapper {
 	
 	public int updateConsultation(ConsultationVO vo);
 	
+	public int lockFlagConsultation(ConsultationVO vo);
+	
 	public int deleteFlagConsultation(ConsultationVO vo);
 	
 	public int insertConsultation(ConsultationVO vo);
+	
+	public int replyConsultation(ConsultationVO vo);
 }

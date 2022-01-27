@@ -4,142 +4,7 @@
 		pageEncoding="UTF-8"%>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script> 
-<script type="text/javascript">
-$(function() {
-	$("#selboxDirect").hide();
-	$("#roomNum").change(function() {
-		if($("#roomNum").val() == "direct") {
-			$("#selboxDirect").show();
-			$("#updateRoomBtn").attr("readonly",true);
-			$("#addRoomBtn").attr("readonly",false);
-		}  else {
-			$("#selboxDirect").hide();
-			$("#updateRoomBtn").attr("readonly",false);
-			$("#addRoomBtn").attr("readonly",true);
-		}
 
-	}) 
-	
-	
-});
-
-//파일 업로드
-$("#uploadBtn").on("click", function(){
-	if($('#fileUpload').val()==""){
-		alert("파일을 선택하세요.");
-		$('#fileUpload').click();
-		return false;
-	}
-	let reader = new FileReader();
-	let formData = new FormData(document.uploadForm);
-	console.log(reader.readAsText(formData));
-	
-	
-	//파일업로드 컨트롤러 -> 서버에 저장
-	$.ajax({
-		url : '/fileUploadAjax',
-		method : 'POST',
-		dataType : 'json',
-		processData : false,
-		contentType : false,
-		data : formData,
-		success : function(datas){
-			console.log("success");
-			console.log(datas);
-			alert(datas.count+"개가 업로드 되었습니다.");
-			let images = "";
-			//$('#attachNo').val(datas.attachNo);
-			/* $("") 태그 $("#") id $(".") class */
-			$('input[name=images]').val(datas.images);
-			document.uploadForm.uploadFile.value="";
-			$('#fileupload').val("");
-			viewFile(datas.images);
-		},
-		error : function(errorThrown){
-			//console.log(errorThrown);
-		}
-	});
-});
-
-
-//파일view
-function viewFile(images){
-$.ajax({
-	url:'/fileUploadAjax/'+images+'/'+no,
-	method : 'get',
-	dataType : 'json',
-	success : function(datas){
-		let result ="";
-		$.each(datas, function(i, data){
-			console.log(data);
-			//이미지 썸네일의 경로를 인코딩 처리해서 서버에 보냄
-			
-			var file_savePath = "C:\\upload\\temp\\";
-			console.log(file_savePath);
-			
-			//console.log("인코딩 후 : "+file_savePath);
-			let fName = data.images;
-			//만약 이미지면 이미지 보여줌
-			if(data.file_type=='Y'){
-				result += "<li><div class='img_wrapper' style='position: relative;'>"
-							+"<img src=/fileDisplay?file_name="+file_savePath+" style=' width: 100%; height: 100%; object-fit: cover;'><br>"
-							+data.images
-							/* +"<span onclick=attachFileDelete('"+data.images"'); data-type='image' style='cursor: pointer; position: absolute; right: 20px; top: 15px; font-size:20px;'>❌</span>" */
-							+"<p class='arrow_box'>close</p></div></li>";
-			} 
-			
-		});
-		if(datas.length == 0){
-			$('#fileUpload').val("");
-			$('#fileUpload').click();
-		}
-		$('#fileList').html(result);
-		if($(location).attr('pathname').match('/board/get')){
-			$('span[data-type=image]').remove();
-		}
-	},
-	error : function(){
-		
-	}
-});
-}//
-
-//file 삭제
-function attachFileDelete(images){
-$.ajax({
-	url:'/fileDelete/'+images,
-	method:'get',
-	success: function(datas){
-		console.log(datas);
-		viewFile(images);
-	},
-	error : function(errorThrown){
-		console.log(errorThrown);
-	}
-})
-}//
-
-
-
-
-
-//switching process
-function addRoomBtn(){
-/* 			if(${vo.delete_flag }==0){
-				if(window.confirm("本当に削除しますか")){
-					document.updateForm.action="/admin/adminDeleteNotice";
-					document.updateForm.submit();
-				}
-			}else if(${vo.delete_flag }==1){
-				if(window.confirm("本当に活性化しますか")){
-					document.updateForm.action="/admin/adminDeleteNotice";
-					document.updateForm.submit();
-			}
-		}
- */	} 
-
-
-</script>
 	<!-- Navbar -->
 	<nav
 		class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
@@ -166,36 +31,21 @@ function addRoomBtn(){
 						<h6 class="mb-0">宿泊施設</h6>
 					</div>
 					<div class="col-6 text-end">
-						<input type="button" class="btn btn-outline-primary btn-sm mb-0" onclick="addRoomBtn()" value="新宿泊施設作成">
-						<input type="button" class="btn btn-outline-secondary btn-sm mb-0" onclick="deleteRoomBtn()" value="宿泊施設削除">
-						<input type="button" class="btn btn-outline-info btn-sm mb-0" onclick="updateRoomBtn()" value="宿泊施設変更">
+						<input type="button" class="btn btn-outline-primary btn-sm mb-0" id="addRoomBtn" onclick="addRoomBtn()" value="新宿泊施設作成" hidden="true">
+						<input type="button" class="btn btn-outline-secondary btn-sm mb-0" id="deleteRoomBtn"onclick="deleteRoomBtn()" value="宿泊施設削除" hidden="true">
+						<input type="button" class="btn btn-outline-info btn-sm mb-0" id="updateRoomBtn" onclick="updateRoomBtn()" value="宿泊施設変更" hidden="true">
 					</div>
 				</div>
 			</div>
 			<div class="card-body p-3 pb-0">
 			
-				<!-- fileupload -->
-				<form name="uploadForm" action="/uploadFile" method="post" enctype="multipart/form-data">
-						<input type="hidden" class="form_file" name="images" id="images">
-						<input type="hidden" name="no">
-						<input type="file" name="uploadFile" id="fileUpload" multiple="multiple" accept="image/*">
-						<br>
-						<br>
-						<button type="button" id="uploadBtn" style="border: 1px solid black; border-radius: 3px;">upload</button>
-					</form>
-						<br>
-						<br>
-		    		<div id="upload_view" style="border: 1px solid black; border-radius: 3px; min-height: 50px; width: 700px;">
-						<ul id="fileList">
-							
-						</ul>
-					</div>
-				
 				<form name="roomInfoForm" action="adminRoomInfoProcess" method="post">
 					<ul class="list-group">
 						<li	class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
 							<div class="d-flex flex-column">
 								<h6 class="mb-1 text-dark font-weight-bold text-sm">Room</h6>
+									<input type="text" name="no" id="no" readonly placeholder="no">
+									<h6 class="mb-1 text-dark font-weight-bold text-sm">Room_no</h6>
 									<select id="roomNum" name="room_num">
 										<option></option>
 										<c:forEach var="roomList" items="${list}">
@@ -205,6 +55,8 @@ function addRoomBtn(){
 									</select>
 									<input type="text" id="selboxDirect" name="selboxDirect"/>
 							</div>
+							
+							<!-- fileupload -->
 						</li>
 						<li	class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
 							<div class="d-flex flex-column">
@@ -248,3 +100,102 @@ function addRoomBtn(){
 	</div>
 	</div>
 </main>
+
+
+
+<script type="text/javascript">
+$(function() {
+	let cloneObj = $(".uploadDiv").clone();
+	let formData = new FormData();
+
+	//fileupload function
+	$("#uploadBtn").on("click", function(e) {
+		let inputFile = $('#uploadFile');
+		let files = inputFile[0].files;
+		var param = {"no":$("#no").val};
+		console.log("files......" + files);
+		let checkFile = $("#uploadFile").val();
+
+		if (!checkFile) {
+			alert("file null");
+			return false;
+		}
+
+		for (let i = 0; i < files.length; i++) {
+			if (!checkExtension(files[i].name, files[i].size)) {
+				return false;
+			}
+			formData.append("uploadFile", files[i]);
+		}
+		$.ajax({
+			url : '/uploadRoomAjaxAction'+'?'+no,
+			processData : false,
+			contentType : false,
+			data : formData,
+			type : 'POST',
+			dataType : 'json',
+			success : function(result) {
+				showUploadedFile(result);
+				$(".uploadDiv").html(cloneObj.html());
+			}
+
+		})//ajax
+	});//uploadBtn
+	
+	
+	
+	$("#selboxDirect").hide();
+	$("#roomNum").change(function() {
+		if($("#roomNum").val() == "direct") {
+			$("#selboxDirect").show();
+			$("#updateRoomBtn").attr("hidden",true);
+			$("#deleteRoomBtn").attr("hidden",true);
+			$("#addRoomBtn").attr("hidden",false);
+		}  else {
+			$("#selboxDirect").hide();
+			$("#updateRoomBtn").attr("hidden",false);
+			$("#deleteRoomBtn").attr("hidden",false);
+			$("#addRoomBtn").attr("hidden",true);
+		}
+
+	}) 
+	
+	
+});
+
+
+//uploadAjax format check
+let regex = new RegExp("(.*?)\.(bmp|gif|jpg|jpeg|png)$");
+let maxSize = 5242880; //5MB
+
+function checkExtension(fileName, fileSize) {
+	if (!regex.test(fileName)) {
+		alert("イメージファイルだけアプロード出来ません");
+		return false;
+	} else if (fileSize >= maxSize) {
+		alert("ファイルのサイズを確認してください");
+		return false;
+	} else {
+		return true;
+	}
+}
+
+//imagelist div  function
+let uploadResult = $("#imageList");
+function showUploadedFile(uploadResultArr) {
+	let str = "";
+	$(uploadResultArr)
+			.each(
+					function(i, obj) {
+
+					});
+	uploadResult.append(str);
+}
+
+
+//switching process
+function addRoomBtn(){
+	
+} 
+
+</script>

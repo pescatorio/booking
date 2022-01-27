@@ -7,9 +7,9 @@
   
   <select id="selectConsultationList" resultType="cosmo.book.vo.ConsultationVO">
 		select * from 
-		(select ROW_NUMBER() OVER (ORDER BY grno DESC, grgrod ASC,depth DESC) row_num, tbl.*
+		(select ROW_NUMBER() OVER (ORDER BY grno DESC, grgrod ASC,depth ASC) row_num, tbl.*
 		    from consultation as tbl
-		    where 1=1
+		    where 1=1 and build_code=7
 		    <!-- search keyword -->
 		    <if test="type=='title' and keyword != ''">
 				and title like '%'  || #{keyword}  ||  '%'
@@ -18,12 +18,12 @@
 				and contents like '%'  || #{keyword}  ||  '%'
 		    </if>
 		) AS list <!-- postgre subquery needs this -->
-		where row_num between #{pageNo} * #{amount}-9 and #{pageNo} * #{amount} 
+		where row_num between #{pageNo} * #{amount}-14 and #{pageNo} * #{amount}  and build_code=7
 	</select>
   
   	<select id="getTotal" resultType="int">
 		select count(*) from consultation
-			where 1=1
+			where 1=1 and build_code=7
 			    <if test="type=='title' and keyword != ''">
 					and title like '%'  || #{keyword}  ||  '%'
 			    </if>
@@ -40,7 +40,7 @@
 	<update id="updateConsultation">
 		update  public."consultation" 
 		set title=#{title}, contents=#{contents}, updated_at = CURRENT_TIMESTAMP
-		where room_num=#{room_num} and build_code=7
+		where no=#{no} and build_code=7
 	</update>
 	<!-- delete query -->	
 	<update id="deleteFlagConsultation">
@@ -50,13 +50,18 @@
 	<update id="lockFlagConsultation">
 		update  public."consultation"  set lock_flag=#{lock_flag} where no=#{no} and build_code=7
 	</update>
+	
 	<insert id="insertConsultation">
-	   <selectKey resultType="int" keyProperty="nextNoOfGrno" order="BEFORE">
-	        SELECT coalesce(MAX(grno), 0) + 1 
-	        FROM public."consultation"
+	   <selectKey resultType="int" keyProperty="tmpGrno" order="BEFORE">
+	        SELECT coalesce(MAX(grno), 0) + 1 FROM public."consultation" where build_code=7
     	</selectKey>
 		INSERT INTO  public."consultation" (no, grno, grgrod, depth, title, contents, name, passwd, lock_flag, delete_flag, created_at, updated_at, build_code) 
-		VALUES(nextval('consultation_seq'),#{nextNoOfGrno},#{grgrod},#{depth},#{title},#{contents},#{name},#{passwd},'0', '0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 7)
+		VALUES(nextval('consultation_seq'),#{tmpGrno},'1','0',#{title},#{contents},#{name},#{passwd},'0', '0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 7)
+	</insert>
+	
+	<insert id="replyConsultation">
+		INSERT INTO  public."consultation" (no, grno, grgrod, depth, title, contents, name, passwd, lock_flag, delete_flag, created_at, updated_at, build_code) 
+		VALUES(nextval('consultation_seq'),#{grno},#{grgrod},#{depth},#{title},#{contents},#{name},#{passwd},'0', '0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 7)
 	</insert>
   
   

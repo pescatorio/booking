@@ -11,7 +11,7 @@
 			<h3 class="font-weight-bolder text-info text-gradient">Login</h3>
 		</div>
 		<div class="card-body">
-			<form role="form" action="/login/loginProcess" method="post">
+			<form role="form" action="/loginProcess" method="post">
 				<label>id</label>
 				<div class="mb-3">
 					<input type="text" class="form-control" placeholder="id" name="id"

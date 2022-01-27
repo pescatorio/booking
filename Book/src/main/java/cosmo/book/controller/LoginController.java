@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/login/*")
+@RequestMapping
 public class LoginController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -21,7 +21,7 @@ public class LoginController {
 	public String login(Model model,HttpServletRequest req) throws Exception{
 		logger.info("adminLogin...");
 		
-		return "login/login";
+		return "/login/login";
 	}
 	
 	@PostMapping("/loginProcess")
@@ -30,9 +30,9 @@ public class LoginController {
 		String id = req.getParameter("id");
 		String password=req.getParameter("password");
 		if(id.equals("admin")&&password.equals("1234")) {
-			return "adminlayout/admin/adminMain";
+			return "redirect:admin/adminMain";
 		}
-		else return "admin/login";
+		else return "/login/login";
 	}
 	
 	

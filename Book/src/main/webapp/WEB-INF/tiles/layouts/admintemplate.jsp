@@ -17,7 +17,6 @@
 	<!-- content 위치 -->
 	<tiles:insertAttribute name="content" />
 	
-	<tiles:insertAttribute name="adminfooter" />
 	</article>
 </section>
 <script src="http://code.jquery.com/jquery-latest.js"></script> 

@@ -25,7 +25,7 @@
 				<li><a href="/notice/list" class="nav-link px-2 text-white">お知らせ</a></li>
 				<li><a href="/consultation/page"
 					class="nav-link px-2 text-white">相談</a></li>
-				<li><a href="/login/login" class="nav-link px-2 text-secondary">admin</a></li>
+				<li><a href="/login" class="nav-link px-2 text-secondary">admin</a></li>
 			</ul>
 		</div>
 	</div>
