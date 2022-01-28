@@ -73,7 +73,7 @@
 	       SELECT (coalesce(MAX(sort_no::INTEGER),0)+1)::character varying(10) FROM public."slider_images" where build_code=7
     	</selectKey>
 		  	INSERT INTO  public."slider_images" (no, file_name, sort_no, activity, delete_flag, created_at, updated_at, build_code) 
-			VALUES(nextval('slider_images_seq'),#{file_name},#{sort_no},'0','0',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,7)
+			VALUES(nextval('slider_images_seq'),#{file_name},#{sort_no},'1','0',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,7)
 	</insert>
   
   </mapper>

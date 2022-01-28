@@ -16,11 +16,15 @@ public class ImageFileTest {
 
 	@Test
 	public void selectNoticeTest() {
-		long tmpImage= Long.parseLong("1,2,3");
+		String tmpImage= "1,2,3";
 		ImageFile imageFile= new ImageFile(tmpImage);
-		List<String> list = imageFile.getImageFile();
-		System.out.println(list.get(0));
-		System.out.println(list.get(1));
+		imageFile.setImages(tmpImage);
+		System.out.println(imageFile);
+		/*
+		 * imageFile.splitImageFile(tmpImage); List<String> list =
+		 * imageFile.getImageFile(); System.out.println(list.get(0));
+		 * System.out.println(list.get(1));
+		 */
 	}
 	
 	

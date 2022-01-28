@@ -5,7 +5,7 @@
   
   <mapper namespace="cosmo.book.mapper.RoomInfoMapper">
   	<select id="selectRoomInfo" resultType="cosmo.book.vo.RoomInfoVO">
-  		select * from  public."room_Info"  where no=#{no}, build_code=7
+  		select * from  public."room_Info" where no=#{no}
   	</select>
   	
   	<select id="selectRoomInfoList" resultType="cosmo.book.vo.RoomInfoVO">
@@ -15,9 +15,9 @@
 	<!-- update query -->
 	<update id="updateRoomInfo">
 		update  public."room_Info" 
-		set room_title=#{room_title}, max=#{max},adult_cost =#{adult_cost} , child_cost=#{child_cost} , explanation=#{explanation} ,images= #{images} ,
+		set room_title=#{room_title}, max=#{max},adult_cost=#{adult_cost} , child_cost=#{child_cost} , explanation=#{explanation} ,images= #{images} ,
 		color_code=#{color_code}  , updated_at= CURRENT_TIMESTAMP
-		where room_num=#{room_num} and build_code=7
+		where no=#{no} and build_code=7
 	</update>
 	<!-- delete query -->	
 	<update id="deleteFlagRoomInfo">

@@ -10,7 +10,7 @@ import cosmo.book.vo.RoomInfoVO;
 @Mapper
 public interface RoomInfoMapper {
 
-	public RoomInfoVO selectRoomInfo(String no);
+	public RoomInfoVO selectRoomInfo(int no);
 	
 	public List<RoomInfoVO> selectRoomInfoList();
 	

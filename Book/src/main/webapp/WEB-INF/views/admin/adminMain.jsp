@@ -1,5 +1,5 @@
 <main
-	class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ps ps--active-y">
+	class="main-content mt-1 border-radius-lg ps ps--active-y">
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -65,6 +65,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<footer class="footer pt-3  ">
 		<div class="container-fluid">
 			<div class="row align-items-center justify-content-lg-between">
@@ -213,11 +214,6 @@
 		uploadResult.html(btnStr);
 	}
 
-	/* Date.prototype.toDateInputValue = (function() {
-		var local = new Date(this);
-		local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-		return local.toJSON().slice(0, 10);
-	}); */
 	
 	////////////////////file locking
 	function activityBtn(no,activity){

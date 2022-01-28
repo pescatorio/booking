@@ -30,7 +30,6 @@ function listBtn(url) {
 	pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <section class="section__content">
-${vo}
 	<div id="nboard_upper"></div>
 	<div id="nboard-wrapper">
 		<h2 class="page_title">お知らせ</h2>

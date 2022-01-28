@@ -6,7 +6,9 @@ import cosmo.book.vo.RoomInfoVO;
 
 public interface RoomInfoService {
 	
-	public RoomInfoVO selectRoomInfo(String no);
+	public RoomInfoVO selectRoomInfo(int no);
+	
+	public List<String> selectRoomImage(int no);
 	
 	public List<RoomInfoVO> selectRoomInfoList();
 	

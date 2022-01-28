@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +27,7 @@ import cosmo.book.service.SliderImagesService;
 import cosmo.book.vo.Criteria;
 import cosmo.book.vo.NoticeVO;
 import cosmo.book.vo.PageNavi;
+import cosmo.book.vo.RoomInfoVO;
 import cosmo.book.vo.SliderimagesVO;
 
 @Controller
@@ -109,6 +111,7 @@ public class AdminController {
 		return "adminlayout/admin/adminNoticeDetail";
 	}
 	
+
 	@PostMapping("/adminUpdateNoticeProcess")
 	public String updateNotice(Criteria cri, Model model, NoticeVO vo) throws Exception{
 		logger.info("adminNoticeDetail...");
@@ -154,10 +157,28 @@ public class AdminController {
 	public String adminRoomInfo(Model model,HttpServletRequest req) throws Exception{
 		logger.info("adminRoomInfo...");
 		System.out.println("rService.selectRoomInfoList()...."+rService.selectRoomInfoList());
-		model.addAttribute("list",rService.selectRoomInfoList());
+		
+		model.addAttribute("noList",rService.selectRoomInfoList());
 		
 		return "adminlayout/admin/adminRoomInfo";
 	}
 	
+	@PostMapping(value="/switchingRoomInfo",produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<RoomInfoVO>switchingRoomInfoProgress(@RequestBody RoomInfoVO roomInfo) throws Exception{
+		logger.info("RoomInfoAjax...");
+		int tmpNo = roomInfo.getNo();
+		RoomInfoVO rVo= new RoomInfoVO();
+		rVo.setNo(tmpNo);
+		rVo=rService.selectRoomInfo(tmpNo);
+		return new ResponseEntity<RoomInfoVO>(rVo, HttpStatus.OK);
+	}
+	
+	@PostMapping("/modifyRoomInfoProgress")
+	public String updateRoomInfo(Model model,RoomInfoVO roomInfoVo) throws Exception{
+		logger.info("modifyRoomInfoProgress...");
+		rService.updateRoomInfo(roomInfoVo);
+		return "redirect: /adminRoomInfo";
+	}
 	
 }

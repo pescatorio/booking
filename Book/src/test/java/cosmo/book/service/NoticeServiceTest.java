@@ -1,7 +1,5 @@
 package cosmo.book.service;
 
-import static org.junit.Assert.*;
-
 import java.sql.Date;
 
 import org.junit.Test;
@@ -12,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cosmo.book.vo.Criteria;
 import cosmo.book.vo.NoticeVO;
+import cosmo.book.vo.RoomInfoVO;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,7 +19,15 @@ public class NoticeServiceTest {
 
 	@Autowired
 	private NoticeService nService;
+	@Autowired
+	private RoomInfoService rService;
 	
+	
+	@Test
+	private void selectRoomInfo() {
+		RoomInfoVO rVo = rService.selectRoomInfo(54);
+		System.out.println("rVo......"+rVo);
+	}
 
 	@Test
 	public void selectNoticeTest() {

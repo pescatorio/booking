@@ -13,15 +13,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import cosmo.book.service.RoomInfoService;
+import cosmo.book.vo.RoomInfoVO;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class ConnectionTest {
 	
 	@Autowired
 	private DataSource dataSource;
-	
+	@Autowired
+	private RoomInfoService rService;
 	@Autowired
 	private SqlSessionFactory sqlFactory;
+	
+	@Test
+	private void selectRoomInfo() {
+		RoomInfoVO rVo = rService.selectRoomInfo(54);
+		System.out.println("rVo......"+rVo);
+	}
 	
 	@Test 
 	public void testConnection() throws Exception{ 
