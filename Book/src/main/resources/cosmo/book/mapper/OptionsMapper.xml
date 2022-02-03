@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cosmo.book.mapper.OptionsMapper">
+  	<select id="selectOptions" resultType="cosmo.book.vo.OptionsVO">
+  		select * from  public."options" where no=#{no} order by no desc
+  	</select>
+  	
+  	<select id="selectOptionsList" resultType="cosmo.book.vo.OptionsVO">
+  		select * from public."options"  order by no asc
+  	</select>
+  
+	<!-- update query -->
+	<update id="updateOptions">
+		update  public."options" 
+		set item=#{item}, cost=#{cost}, updated_at= CURRENT_TIMESTAMP
+		where no=#{no} 
+	</update>
+	<!-- delete query -->	
+	<update id="deleteFlagOptions">
+		update  public."options"  set delete_flag=#{delete_flag} where no=#{no}
+	</update>
+	<update id="activityOptions">
+		update  public."options"  set activity=#{activity} where no=#{no}
+	</update>
+	<insert id="insertOptions">
+		INSERT INTO  public."options" (no, item, cost, activity, delete_flag,created_at, updated_at) 
+		VALUES(nextval('options_seq'),#{item},#{cost},'0','0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+	</insert>
+  
+  
+  </mapper>

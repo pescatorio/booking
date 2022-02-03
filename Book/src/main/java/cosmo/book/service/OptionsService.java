@@ -9,13 +9,13 @@ public interface OptionsService {
 	
 	public OptionsVO selectOptions(int no);
 	
-	public int getTotal(Criteria cri);
-	
-	public ArrayList <OptionsVO> getList(Criteria cri);
+	public ArrayList <OptionsVO> selectOptionsList();
 	
 	public int updateOptions(OptionsVO vo);
 	
 	public int deleteFlagOptions(OptionsVO vo);
+	
+	public int activityOptions(OptionsVO vo);
 	
 	public int insertOptions(OptionsVO vo);
 }

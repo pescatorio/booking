@@ -14,6 +14,8 @@ public interface RoomInfoMapper {
 	
 	public List<RoomInfoVO> selectRoomInfoList();
 	
+	public List<RoomInfoVO> selectRoomInfoListAtHome();
+	
 	public int updateRoomInfo(RoomInfoVO vo);
 	
 	public int deleteFlagRoomInfo(RoomInfoVO vo);

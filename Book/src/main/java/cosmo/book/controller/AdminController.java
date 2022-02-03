@@ -158,7 +158,7 @@ public class AdminController {
 		logger.info("adminRoomInfo...");
 		System.out.println("rService.selectRoomInfoList()...."+rService.selectRoomInfoList());
 		
-		model.addAttribute("noList",rService.selectRoomInfoList());
+		model.addAttribute("rList",rService.selectRoomInfoList());
 		
 		return "adminlayout/admin/adminRoomInfo";
 	}
@@ -178,7 +178,23 @@ public class AdminController {
 	public String updateRoomInfo(Model model,RoomInfoVO roomInfoVo) throws Exception{
 		logger.info("modifyRoomInfoProgress...");
 		rService.updateRoomInfo(roomInfoVo);
-		return "redirect: /adminRoomInfo";
+		return "redirect: /admin/adminRoomInfo";
+	}
+	
+	@PostMapping("/deleteRoomInfoProgress")
+	public String deleteRoomInfo(Model model,RoomInfoVO roomInfoVo) throws Exception{
+		logger.info("deleteRoomInfoProgress...");
+		System.out.println("roomInfoVo.........."+roomInfoVo);
+		rService.deleteFlagRoomInfo(roomInfoVo);
+		return "redirect: /admin/adminRoomInfo";
+	}
+	
+	@PostMapping("/addRoomInfoProgress")
+	public String addRoomInfo(Model model,RoomInfoVO roomInfoVo) throws Exception{
+		logger.info("addRoomInfoProgress...");
+		System.out.println("insertRoomInfo..........roominfoVo........."+roomInfoVo);
+		rService.insertRoomInfo(roomInfoVo);
+		return "redirect: /admin/adminRoomInfo";
 	}
 	
 }

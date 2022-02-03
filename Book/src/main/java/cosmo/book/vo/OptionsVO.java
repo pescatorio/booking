@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Repository;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -20,7 +22,9 @@ public class OptionsVO {
 	
 	private String delete_flag;
 	
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private Date created_at;
 	
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private Date updated_at;
 }

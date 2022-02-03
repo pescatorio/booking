@@ -94,24 +94,6 @@
 					</ul>
 				</nav>
 			</div>
-
-			<form method=get action=/notice/list name=listForm>
-				<input type=hidden name=no> <input type=hidden
-					name=pageNo value=${pageNavi.cri.pageNo }>
-				<div class="form-inline">
-					<select class="form-control" name=type>
-						<option value='title'	<c:if test="${pageNavi.cri.type == 'title'}">selected</c:if>>title</option>
-						<option value='contents' <c:if test="${pageNavi.cri.type == 'contents'}">selected</c:if>>contents</option>
-					</select> 
-					<input class="form-control" list="searchList" name=keyword value=${pageNavi.cri.keyword }>
-						<datalist id="searchList">
-						  <option value="room" label="room">
-						  <option value="event" label="event">
-						  <option value="travel info" label="travel info">
-						</datalist>
-					<button type="submit" onClick="page(1)">search</button>
-				</div>
-			</form>
 		</div>
 	</div>
 	

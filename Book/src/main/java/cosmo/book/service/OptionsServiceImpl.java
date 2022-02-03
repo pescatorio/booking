@@ -21,15 +21,6 @@ public class OptionsServiceImpl implements OptionsService{
 		return oMapper.selectOptions(no);
 	}
 
-	@Override
-	public int getTotal(Criteria cri) {
-		return oMapper.getTotal(cri);
-	}
-
-	@Override
-	public ArrayList<OptionsVO> getList(Criteria cri) {
-		return oMapper.getList(cri);
-	}
 
 	@Override
 	public int updateOptions(OptionsVO vo) {
@@ -44,6 +35,18 @@ public class OptionsServiceImpl implements OptionsService{
 	@Override
 	public int insertOptions(OptionsVO vo) {
 		return oMapper.insertOptions(vo);
+	}
+
+
+	@Override
+	public ArrayList<OptionsVO> selectOptionsList() {
+		return oMapper.selectOptionsList();
+	}
+
+
+	@Override
+	public int activityOptions(OptionsVO vo) {
+		return activityOptions(vo);
 	}
 	
 	

@@ -37,12 +37,22 @@ public class RoomInfoServiceImpl implements RoomInfoService{
 	}
 	
 	@Override
+	public List<RoomInfoVO> selectRoomInfoListAtHome() {
+		return rMapper.selectRoomInfoList();
+	}
+	
+	@Override
 	public int updateRoomInfo(RoomInfoVO vo) {
 		return rMapper.updateRoomInfo(vo);
 	}
 
 	@Override
 	public int deleteFlagRoomInfo(RoomInfoVO vo) {
+		if(vo.getDelete_flag().equals("1")) {
+			vo.setDelete_flag("0");
+		}else {
+			vo.setDelete_flag("1");
+		}
 		return rMapper.deleteFlagRoomInfo(vo);
 	}
 

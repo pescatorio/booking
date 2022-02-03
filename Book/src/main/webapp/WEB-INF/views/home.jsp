@@ -1,15 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8" %>
-<script type="text/javascript">
-if('${resMsg}' != ''){
-	alert('${resMsg}');	
-}
-function detail(no){
-	document.listForm.action="/notice/detail";
-	document.listForm.no.value=no;
-	document.listForm.submit();
-}
-</script>
+
 
 <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -31,9 +22,9 @@ function detail(no){
 				<img src='../resources/image/image1200X700/4a90f371d000ea46901dfb2633ddd3fb066fb4621134f1486c192f432361efdb.jpg' class="d-block w-100">
 			</div>
 			<c:forEach var='imageVo' items='${imageList }'>
-			<div class="carousel-item ">
-				<img src='../resources/image/image1200X700/<c:out value="${imageVo.file_name}"></c:out>' class="d-block w-100">
-			</div>
+				<div class="carousel-item ">
+					<img src='../resources/image/image1200X700/<c:out value="${imageVo.file_name}"></c:out>' class="d-block w-100">
+				</div>
 			</c:forEach>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleIndicators"
@@ -52,104 +43,33 @@ function detail(no){
 	<div class="b-example-divider"></div>
 
 
-
-
 		<div class="b-example-divider"></div>
 
 		<div class="container col-xl-10 col-xxl-8 px-4 py-5">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+			<c:forEach var="rVo" items="${rList}">
         <div class="col">
           <div class="card shadow-sm">
-			<img src="../resources/image/image500X500/room1.jpg" height="150vh" align="middle">			
+			<img src="../resources/image/image500X500/<c:out value='${rVo.images }'></c:out>" height="150vh" align="middle">			
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            	<i><small style="color: <c:out value='${rVo.color_code }'></c:out>;">部屋番号&nbsp&nbsp&nbsp</small><small><c:out value="${rVo.room_num }">号室</c:out></small></i><br>
+            	<small>人数&nbsp&nbsp&nbsp <c:out value='${rVo.max }'></c:out>&nbsp&nbsp&nbsp&nbsp&nbsp
+            	成人価格&nbsp&nbsp&nbsp<c:out value='${rVo.adult_cost}'></c:out>&nbsp&nbsp&nbsp&nbsp&nbsp
+            	子供価格&nbsp&nbsp&nbsp<c:out value='${rVo.child_cost}'></c:out>
+            	</small>　
+              <p class="card-text"><c:out value="${rVo.explanation }"></c:out></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="roomInfo/page?room_no=701"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
-                   <a href="consultation/page?room_no=701"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
+                  <a href="roomInfo/page?"<c:out value="rVo.room_num"></c:out>><button type="button" class="btn btn-sm btn-outline-secondary">要約</button></a>
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card shadow-sm">
-			<img src="../resources/image/image500X500/room2.jpg" height="150vh" align="middle">	            
-			<div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="roomInfo/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
-                   <a href="consultation/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-			<img src="../resources/image/image500X500/room3.jpg" height="150vh" align="middle">	            
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="roomInfo/page?room_no=703"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
-                   <a href="consultation/page?room_no=702"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-			<img src="../resources/image/image500X500/room4.jpg" height="150vh" align="middle">	            
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="roomInfo/page?room_no=704"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
-                  <a href="consultation/page?room_no=704"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-			<img src="../resources/image/image500X500/room5.jpg" height="150vh" align="middle">	            
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="roomInfo/page?room_no=705"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
-                   <a href="consultation/page?room_no=705"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-			<img src="../resources/image/image500X500/room6.jpg" height="150vh" align="middle">	            
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="roomInfo/page?room_no=706"><button type="button" class="btn btn-sm btn-outline-secondary">詳細</button></a>
-                   <a href="consultation/page?room_no=706"><button type="button" class="btn btn-sm btn-outline-secondary">相談</button></a>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-        </div>
-      </div>
+        </c:forEach>
+        
+      
+      
     </div>
   </div>
 
@@ -176,11 +96,10 @@ function detail(no){
 								<th>内容</th>
 								<th>生成日</th>
 								<th>修正日</th>
-								<th>build_code</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="vo" items="${list}">
+							<c:forEach var="vo" items="${nList}">
 								<c:choose>
 									<c:when test="${empty vo}">
 										<tr class="odd gradeX">
@@ -194,7 +113,6 @@ function detail(no){
 											<td>deleted</td>
 											<td><c:out value="${vo.created_at}"/></td>
 											<td><c:out value="${vo.updated_at}"/></td>
-											<td><c:out value="${vo.build_code}"/></td>
 										</tr>
 									</c:when>
 									<c:when test="${vo.delete_flag == '0'}">
@@ -206,7 +124,6 @@ function detail(no){
 											<td><c:out value="${vo.contents}"/></td>
 											<td><c:out value="${vo.created_at}"/></td>
 											<td><c:out value="${vo.updated_at}"/></td>
-											<td><c:out value="${vo.build_code}"/></td>
 										</tr>
 									</c:when>
 								</c:choose>
@@ -216,5 +133,28 @@ function detail(no){
 				</div>
 			</div>
 		</div>
-
+		<form method=get action=/notice/list name=listForm hidden="true">
+				<input type=hidden name=no> <input type=hidden
+					name=pageNo value="1">
+				<div class="form-inline">
+					<select class="form-control" name=type>
+						<option value='title'>title</option>
+						<option value='contents'>contents</option>
+					</select> 
+					<input class="form-control" list="searchList" name=keyword value=${pageNavi.cri.keyword }>
+					<button type="submit" onClick="page(1)">search</button>
+				</div>
+			</form>
 		<div class="b-example-divider mb-0"></div>
+		
+		
+		<script type="text/javascript">
+if('${resMsg}' != ''){
+	alert('${resMsg}');	
+}
+function detail(no){
+	document.listForm.action="/notice/detail";
+	document.listForm.no.value=no;
+	document.listForm.submit();
+}
+</script>

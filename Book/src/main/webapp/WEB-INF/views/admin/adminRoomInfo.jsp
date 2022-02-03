@@ -4,7 +4,6 @@
 		pageEncoding="UTF-8"%>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script> 
-
 	<!-- Navbar -->
 	<nav
 		class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
@@ -47,11 +46,11 @@
 									<input type="text" name="no" id="no" readonly placeholder="no">
 									<h6 class="mb-1 text-dark font-weight-bold text-sm">Room_no</h6>
 									<select id="room_num" name="room_num">
-										<option></option>
-										<c:forEach var="roomNoList" items="${noList}">
+										<option>選択してください</option>
+										<c:forEach var="roomNoList" items="${rList}">
 											<option value="${roomNoList.room_num}" data-no="${roomNoList.no}">${roomNoList.room_num}</option>
 										</c:forEach>
-										<option value="direct" >新規入力</option>
+										<option value="direct" >直接入力</option>
 									</select>
 									<input type="text" id="selboxDirect" name="selboxDirect"/>
 							</div>
@@ -92,6 +91,8 @@
 							<div class="d-flex flex-column">
 								<h6 class="text-dark mb-1 font-weight-bold text-sm">修正日</h6>
 								<input id="updated_at" type="date" name="updated_at" readonly>
+								<input type="hidden" name="delete_flag" id="delete_flag">
+								<input type="hidden" name="build_code" id="build_code">
 							</div>
 						</li>
 					</ul>
@@ -191,12 +192,22 @@ $("#room_num").change(function() {
 		$("#deleteRoomBtn").attr("hidden",true);
 		$("#addRoomBtn").attr("hidden",false);
 		
+		$("#roomInfoForm")[0].reset();
+		$("#no").val('');
+		$("#created_at").val("2022-01-01");
+		$("#updated_at").val("2022-01-01");
 		
 	}  else {
 		$("#selboxDirect").hide();
 		$("#updateRoomBtn").attr("hidden",false);
 		$("#deleteRoomBtn").attr("hidden",false);
 		$("#addRoomBtn").attr("hidden",true);
+		
+		if($("#delete_flag")=='0'){
+			$("#deleteRoomBtn").val('宿泊施設削除');
+		}else{
+			$("#deleteRoomBtn").val('宿泊施設活性化');
+		}
 		
 		let sendData={
 				"no"  :   $('#room_num option:selected').attr('data-no'),
@@ -225,6 +236,8 @@ $("#room_num").change(function() {
 					$("#color_code").val(data["color_code"]);
 					$("#created_at").val(data["created_at"]);
 					$("#updated_at").val(data["updated_at"]);
+					$("#delete_flag").val(data["delete_flag"]);
+					$("#build_code").val(data["build_code"]);
 			}
 		});
 		
@@ -263,14 +276,31 @@ function showUploadedFile(uploadResultArr) {
 }
 
 
-//switching process
+//addRoominfo progress
 function addRoomBtn(){
-	
+	$("#no").val(0);
+	$("#roomInfoForm").attr("action", "addRoomInfoProgress");
+	$("#roomInfoForm").submit();
 } 
 
+//modifyRoominfo progress
 function updateRoomBtn(){
 	$("#roomInfoForm").attr("action", "modifyRoomInfoProgress");
 	$("#roomInfoForm").submit();
 }
-
+//deleteRoomInfo progress
+function deleteRoomBtn(){
+	console.log("delete_flag........"+$("#delete_flag").val());
+	if($("#delete_flag").val()==0){
+		if(window.confirm("本当に削除しますか")){
+			$("#roomInfoForm").attr("action", "deleteRoomInfoProgress");
+			$("#roomInfoForm").submit();
+		}
+	}else if($("#delete_flag").val()==1){
+		if(window.confirm("本当に活性化しますか")){
+			$("#roomInfoForm").attr("action", "deleteRoomInfoProgress");
+			$("#roomInfoForm").submit();
+		}
+	}
+}
 </script>

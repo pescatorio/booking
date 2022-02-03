@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cosmo.book.service.NoticeService;
+import cosmo.book.service.RoomInfoService;
 import cosmo.book.service.SliderImagesService;
+import cosmo.book.vo.RoomInfoVO;
 
 /**
  * Handles requests for the application home page.
@@ -23,6 +25,9 @@ public class HomeController {
 	NoticeService nService;
 	@Autowired
 	SliderImagesService sService;
+	@Autowired
+	RoomInfoService rService;
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -34,7 +39,8 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		logger.info("home...");
-		model.addAttribute("list",nService.getListAtHome());
+		model.addAttribute("nList",nService.getListAtHome());
+		model.addAttribute("rList",rService.selectRoomInfoListAtHome());
 		model.addAttribute("imageList",sService.getSliderimagesListAtHome());
 		return "layout/home";
 	}

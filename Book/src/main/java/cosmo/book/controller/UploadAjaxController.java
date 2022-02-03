@@ -25,8 +25,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import cosmo.book.service.OptionsService;
 import cosmo.book.service.RoomInfoService;
 import cosmo.book.service.SliderImagesService;
+import cosmo.book.vo.OptionsVO;
 import cosmo.book.vo.RoomInfoVO;
 import cosmo.book.vo.SliderimagesVO;
 import lombok.extern.log4j.Log4j;
@@ -40,7 +42,8 @@ public class UploadAjaxController {
 	SliderImagesService sService;
 	@Autowired
 	RoomInfoService rService;
-	
+	@Autowired
+	OptionsService oService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(UploadAjaxController.class);
 	
@@ -88,6 +91,14 @@ public class UploadAjaxController {
 		logger.info("getImageAjax...");
 		List<SliderimagesVO> sList= sService.selectSliderimages();
 		return new ResponseEntity<List<SliderimagesVO>>(sList, HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/getOptionAjax",produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<OptionsVO>> getOptionAjax(OptionsVO oVO,Model model) throws Exception{
+		logger.info("getOptionsAjax...");
+		List<OptionsVO> oList= oService.selectOptionsList();
+		return new ResponseEntity<List<OptionsVO>>(oList, HttpStatus.OK);
 	}
 	
 

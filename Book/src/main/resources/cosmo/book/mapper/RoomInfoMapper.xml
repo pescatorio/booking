@@ -11,6 +11,9 @@
   	<select id="selectRoomInfoList" resultType="cosmo.book.vo.RoomInfoVO">
   		select * from public."room_Info"  where build_code=7
   	</select>
+  	<select id="selectRoomInfoListAtHome" resultType="cosmo.book.vo.RoomInfoVO">
+  		select * from public."room_Info"  where build_code=7 and delete_flag='0'
+  	</select>
   
 	<!-- update query -->
 	<update id="updateRoomInfo">
@@ -25,7 +28,7 @@
 	</update>
 	<insert id="insertRoomInfo">
 		INSERT INTO  public."room_Info" (no, room_num, room_title, max, adult_cost, child_cost, explanation, images, color_code, delete_flag, created_at, updated_at, build_code) 
-		VALUES(nextval('room_info_seq'),#{room_num},#{room_title},#{max},#{adult_cost},#{child_cost},#{explanation},#{images},'0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 7)
+		VALUES(nextval('room_info_seq'),#{room_num},#{room_title},#{max},#{adult_cost},#{child_cost},#{explanation},#{images},#{color_code}, '0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 7)
 	</insert>
   
   

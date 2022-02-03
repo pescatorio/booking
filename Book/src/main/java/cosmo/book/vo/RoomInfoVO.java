@@ -12,7 +12,7 @@ import lombok.Data;
 @Repository
 public class RoomInfoVO {
 
-	private int no;
+	private int no;   
 	
 	private String room_num;
 	
