@@ -1,25 +1,29 @@
 package cosmo.book.mapper;
 
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import cosmo.book.vo.BookingPeriodVO;
 import cosmo.book.vo.BookingVO;
-import cosmo.book.vo.Criteria;
 
 @Mapper
 public interface BookingMapper {
 
 	public BookingVO selectBooking(int no);
 	
-	public int getTotal(Criteria cri);
+	public List<BookingVO> selectBookingList();
 	
-	public ArrayList <BookingVO> getList(Criteria cri);
+	public List<BookingPeriodVO> selectPeriod(int room_no);
 	
 	public int updateBooking(BookingVO vo);
 	
-	public int deleteFlagBooking(BookingVO vo);
+	public void updateBookingPaymentFlag(BookingVO vo);
+	
+	public void updateBookingDeleteFlag(BookingVO vo);
+	
+	public void updateBookingCancelFlag(BookingVO vo);
 	
 	public int insertBooking(BookingVO vo);
 }

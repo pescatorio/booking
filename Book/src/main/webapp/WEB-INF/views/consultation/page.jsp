@@ -15,7 +15,6 @@
 							<col style="width: 10%;">
 							<col style="width: 40%;">
 							<col style="width: 10%;">
-							<col style="width: 10%;">
 							<col style="width: auto;">
 						</colgroup>
 						<thead>
@@ -25,7 +24,6 @@
 								<th>contents</th>
 								<th>created_at</th>
 								<th>updated_at</th>
-								<th>build_code</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -39,7 +37,6 @@
 									<c:when test="${vo.delete_flag == '1'}">
 										<tr>
 											<td>
-											
 											<c:if test="${vo.depth>0 }">
 												<c:forEach var='i' begin='0' end='${vo.depth-1 }'>
 													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
@@ -52,7 +49,6 @@
 											<td>deleted</td>
 											<td><c:out value="${vo.created_at}"/></td>
 											<td><c:out value="${vo.updated_at}"/></td>
-											<td><c:out value="${vo.build_code}"/></td>
 										</tr>
 									</c:when>
 									<c:when test="${vo.lock_flag == '1'}">
@@ -78,7 +74,6 @@
 												</svg></td>
 											<td><c:out value="${vo.created_at}"/></td>
 											<td><c:out value="${vo.updated_at}"/></td>
-											<td><c:out value="${vo.build_code}"/></td>
 										</tr>
 									</c:when>
 									<c:when test="${vo.delete_flag == '0' && vo.lock_flag == '0'}">
@@ -99,7 +94,6 @@
 											<td><c:out value="${fn:substring(vo.contents, 0, 100)}"/></td>
 											<td><c:out value="${vo.created_at}"/></td>
 											<td><c:out value="${vo.updated_at}"/></td>
-											<td><c:out value="${vo.build_code}"/></td>
 										</tr>
 									</c:when>
 								</c:choose>
@@ -108,7 +102,6 @@
 					</table>
 				</div>
 			</div>
-
 			<div id="paginationbox">
 				<nav style="display: table-cell; vertical-align:middle;">
 					<ul class="pagination centered">

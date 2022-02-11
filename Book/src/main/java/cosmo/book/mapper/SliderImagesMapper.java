@@ -15,6 +15,8 @@ public interface SliderImagesMapper {
 	
 	public  ArrayList <SliderimagesVO> getSliderimagesListAtHome();
 	
+	public  ArrayList <SliderimagesVO> getSliderimagesListAtRoomInfo();
+	
 	public int getTotal(Criteria cri);
 	
 	public ArrayList <SliderimagesVO> getSliderimagesList(Criteria cri);
@@ -28,4 +30,6 @@ public interface SliderImagesMapper {
 	public void insertSliderimages(SliderimagesVO vo);
 	
 	public SliderimagesVO selectimage(int no);
+	
+	
 }

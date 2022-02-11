@@ -1,21 +1,27 @@
 package cosmo.book.service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import cosmo.book.vo.BookingVO;
-import cosmo.book.vo.Criteria;
 
 public interface BookingService {
 	
 	public BookingVO selectBooking(int no);
 	
-	public int getTotal(Criteria cri);
+	public Map<String,BookingVO> selectBookingMap();
 	
-	public ArrayList <BookingVO> getList(Criteria cri);
+	public List<BookingVO> selectBookingList();
+	
+	public List<String> selectPeriod(int room_no);
 	
 	public int updateBooking(BookingVO vo);
 	
-	public int deleteFlagBooking(BookingVO vo);
+	public void updateBookingPaymentFlag(BookingVO vo);
+	
+	public void updateBookingDeleteFlag(BookingVO vo);
+	
+	public void updateBookingCancelFlag(BookingVO vo);
 	
 	public int insertBooking(BookingVO vo);
 }

@@ -1,34 +1,7 @@
-<jsp:useBean id="now" class="java.util.Date" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript">
-$(function() {
-	$('#contents').on(
-	'keyup',
-	function() {
-		$('#content_wordcount').html(
-				"(" + $(this).val().length + " / 500자)");
-		if ($(this).val().length > 500) {
-			$(this).val($(this).val().substring(0, 500));
-			$('#content_wordcount').html(
-					"(500 / 500자)");
-			alert("글자수가 초과했습니다.");
-		}
-	});
-});
-
-if('${resMsg}' != ''){
-	alert('${resMsg}');	
-}
-function listBtn(url) {
-	document.detailForm.action = url;
-	document.detailForm.submit();
-}
-
-</script>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <section class="section__content">
 	<div id="nboard_upper"></div>
 	<div id="nboard-wrapper">
@@ -111,3 +84,29 @@ function listBtn(url) {
 	<!-- nboard-wrapper -->
 
 </section>
+
+<script type="text/javascript">
+$(function() {
+	$('#contents').on(
+	'keyup',
+	function() {
+		$('#content_wordcount').html(
+				"(" + $(this).val().length + " / 500자)");
+		if ($(this).val().length > 500) {
+			$(this).val($(this).val().substring(0, 500));
+			$('#content_wordcount').html(
+					"(500 / 500자)");
+			alert("글자수가 초과했습니다.");
+		}
+	});
+});
+
+if('${resMsg}' != ''){
+	alert('${resMsg}');	
+}
+function listBtn(url) {
+	document.detailForm.action = url;
+	document.detailForm.submit();
+}
+
+</script>

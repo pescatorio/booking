@@ -29,6 +29,11 @@ public class OptionsServiceImpl implements OptionsService{
 
 	@Override
 	public int deleteFlagOptions(OptionsVO vo) {
+		if(vo.getDelete_flag().equals("1")) {
+			vo.setDelete_flag("0");
+		}else {
+			vo.setDelete_flag("1");
+		}
 		return oMapper.deleteFlagOptions(vo);
 	}
 
@@ -46,7 +51,12 @@ public class OptionsServiceImpl implements OptionsService{
 
 	@Override
 	public int activityOptions(OptionsVO vo) {
-		return activityOptions(vo);
+		if(vo.getActivity().equals("1")) {
+			vo.setActivity("0");
+		}else {
+			vo.setActivity("1");
+		}
+		return oMapper.activityOptions(vo);
 	}
 	
 	

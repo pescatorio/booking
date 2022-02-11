@@ -1,5 +1,4 @@
-<main
-	class="main-content mt-1 border-radius-lg ps ps--active-y">
+<main class="main-content mt-1 border-radius-lg ps ps--active-y">
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -233,8 +232,6 @@
 					type : 'POST',
 					dataType : 'html',
 					success : function(data) {
-						console.log("activating ajax.........");
-						console.log(data);
 						fileListReload();
 					}
 				});
@@ -249,7 +246,6 @@
 					type : 'POST',
 					dataType : 'html',
 					success : function(data) {
-						console.log(data);
 						fileListReload();
 					}
 				})
@@ -275,8 +271,6 @@
 					type : 'POST',
 					dataType : 'html',
 					success : function(data) {
-						console.log("deleting ajax.........");
-						console.log(data);
 						fileListReload();
 					}
 				});
@@ -291,7 +285,6 @@
 					type : 'POST',
 					dataType : 'html',
 					success : function(data) {
-						console.log(data);
 						fileListReload();
 					}
 				})

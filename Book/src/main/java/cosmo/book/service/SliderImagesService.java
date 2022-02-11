@@ -11,6 +11,8 @@ public interface SliderImagesService {
 	
 	public  ArrayList <SliderimagesVO> getSliderimagesListAtHome();
 	
+	public  ArrayList <SliderimagesVO> getSliderimagesListAtRoomInfo();
+	
 	public int getTotal(Criteria cri);
 	
 	public ArrayList <SliderimagesVO> getSliderimagesList(Criteria cri);

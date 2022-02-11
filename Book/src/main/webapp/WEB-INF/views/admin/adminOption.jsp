@@ -1,11 +1,13 @@
-<main
-	class="main-content mt-1 border-radius-lg ps ps--active-y">
+
+<main class="main-content mt-1 border-radius-lg ps ps--active-y">
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 		pageEncoding="UTF-8"%>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
 	<!-- Navbar -->
 	<nav
 		class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
@@ -31,8 +33,24 @@
 						<div class="col-6 d-flex align-items-center">
 							<h6 class="mb-0">Options Lists</h6>
 						</div>
+						<div class="col-6 text-end">
+							<button class="btn btn-outline-primary btn-sm mb-0 addModalBtn">新規作成</button>
+						</div>
 					</div>
 				</div>
+
+				<!--                    modal for addOption                             -->
+				<div class="modal">
+					<div class="modal_content" title="オプション追加">
+						<label>新しいオプション</label><br> <input type="text"
+							placeholder="Item" name="addItem" id="addItem"> <input
+							type="number" placeholder="cost" name="addCost" id="addCost">
+						<input type="button" class="btn btn-info" id="addBtn" value="追加">
+						<input type="button" class="btn btn-warning"
+							id="escapeFromModalBtn" value="取り消し">
+					</div>
+				</div>
+
 				<div class="card-body px-0 pt-0 pb-6">
 					<div class="table-responsive">
 						<table class="table align-items-center mb-0">
@@ -46,7 +64,7 @@
 										class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">活性/削除</th>
 									<th
 										class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">作成日/修正日</th>
-									<th class="text-secondary opacity-7"></th>
+									<th class="text-secondary opacity-7">修正</th>
 								</tr>
 							</thead>
 							<tbody id="optionList">
@@ -57,7 +75,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<footer class="footer pt-3  ">
 		<div class="container-fluid">
 			<div class="row align-items-center justify-content-lg-between">
@@ -95,12 +113,12 @@
 <script type="text/javascript">
 	optionListReload();
 	let uploadResult = $("#optionList");
-	
+
 	let cloneObj = $(".uploadDiv").clone();
 	//////////////////////////////////////ajax
-	function optionListReload(){
+	function optionListReload() {
 		let formData = new FormData();
-		
+
 		$.ajax({
 			url : '/getOptionAjax',
 			processData : false,
@@ -118,59 +136,79 @@
 	$(function() {
 		let cloneObj = $(".uploadDiv").clone();
 		let formData = new FormData();
-		
 
 	});//$(function()
-
-
 
 	//optionlist div  function
 	function showOpions(uploadResultArr) {
 		let btnStr = "";
 		$(uploadResultArr)
-			.each(function(i, obj) {
-				btnStr += "<tr><td><div class='d-flex px-2 py-1'><div></div>"
-					+ "<div class=''><p class='text-xs font-weight-bold mb-0'>"
-					+ obj.no+"</p>"
-					+ "</div></div></td><td><p class='text-xs font-weight-bold mb-0'><h6 class='mb-0 text-sm'>"
-					+ obj.item
-					+ "</h6>"
-					+ "<input type='number' name='cost' id='cost' value='"+obj.cost+"'>"
-					+ "</p></td><td class='align-middle text-center text-sm'>";
-					if (obj.activity == 0) {
-						btnStr += "<input type='button' class='btn btn-success activityBtn' value='"+obj.activity+"' onclick='activityBtn("+obj.no+ "," + obj.activity+")'>";
-					} else if (obj.activity == 1) {
-						btnStr += "<input type='button' class='btn btn-warning activityBtn' value='"+obj.activity+"' onclick='activityBtn("+obj.no+ "," + obj.activity+")'>";
-					}if (obj.delete_flag == 0) {
-						btnStr += "<input type='button' class='btn btn-info deleteBtn' value='"+obj.delete_flag+"' name='deleteBtn' onclick='deleteBtn("+obj.no+ "," + obj.delete_flag+")'>";
-					} else if (obj.delete_flag == 1) {
-						btnStr += "<input type='button' class='btn btn-warning deleteBtn' value='"+obj.delete_flag+"' name='deleteBtn' onclick='deleteBtn("+obj.no+ "," + obj.delete_flag+")'>";
-					} btnStr += "</span> </td><td class='align-middle text-center'>"
-						+ "<p>"
-						+ obj.created_at
-						+ "</p>"
-						+ "<p>"
-						+ obj.created_at
-						+ "</p>"
-						+ "</td></tr>";
-					}
-			);//end each
+				.each(
+						function(i, obj) {
+							btnStr += "<tr><td><div class='d-flex px-2 py-1'><div></div>"
+									+ "<div class=''><p class='text-xs font-weight-bold mb-0'>"
+									+ obj.no
+									+ "</p>"
+									+ "</div></div></td><td><p class='text-xs font-weight-bold mb-0'><h6 class='mb-0 text-sm'>"
+									+ obj.item
+									+ "</h6>"
+									+ "<input type='number' name='cost' id='cost' value='"+obj.cost+"' data-no='"+obj.no+"'>"
+									+ "</p></td><td class='align-middle text-center text-sm'>";
+							if (obj.activity == 0) {
+								btnStr += "<input type='button' class='btn btn-success activityBtn' value='"
+										+ obj.activity
+										+ "' onclick='activityBtn("
+										+ obj.no
+										+ "," + obj.activity + ")'>";
+							} else if (obj.activity == 1) {
+								btnStr += "<input type='button' class='btn btn-warning activityBtn' value='"
+										+ obj.activity
+										+ "' onclick='activityBtn("
+										+ obj.no
+										+ "," + obj.activity + ")'>";
+							}
+							if (obj.delete_flag == 0) {
+								btnStr += "<input type='button' class='btn btn-info deleteBtn' value='"
+										+ obj.delete_flag
+										+ "' name='deleteBtn' onclick='deleteBtn("
+										+ obj.no
+										+ ","
+										+ obj.delete_flag
+										+ ")'>";
+							} else if (obj.delete_flag == 1) {
+								btnStr += "<input type='button' class='btn btn-warning deleteBtn' value='"
+										+ obj.delete_flag
+										+ "' name='deleteBtn' onclick='deleteBtn("
+										+ obj.no
+										+ ","
+										+ obj.delete_flag
+										+ ")'>";
+							}
+							btnStr += "</span> </td><td class='align-middle text-center'>"
+									+ "<p>"
+									+ obj.created_at
+									+ "</p>"
+									+ "<p>"
+									+ obj.created_at
+									+ "</p>"
+									+ "</td><td><button class='btn btn-secondary' name='modifyBtn' onclick='modifyBtn("
+									+ obj.no + ")'>修正</button></td></tr>";
+						});//end each
 		uploadResult.html(btnStr);
 	}
 
-	
 	////////////////////file locking
-	function activityBtn(no,activity){
+	function activityBtn(no, activity) {
 		console.log("activating btn.........");
 		//////////sending data
-		sendData={
-				"no"  :  no,
-				"activity"  :  activity
+		sendData = {
+			"no" : no,
+			"activity" : activity
 		};
 		/////////////////////////////////locking process	
-		if(activity == '0'){
+		if (activity == '0') {
 			////////confirm
-			if(window.confirm("本当にロックしますか")){
+			if (window.confirm("本当にロックしますか")) {
 				$.ajax({
 					url : '/admin/activityOptionProgress',
 					data : sendData,
@@ -179,14 +217,14 @@
 					success : function(data) {
 						console.log("activating ajax.........");
 						console.log(data);
-						fileListReload();
+						optionListReload();
 					}
 				});
 			}
-		///////////////////////////////unlocking process
-		}else{
+			///////////////////////////////unlocking process
+		} else {
 			/////////confirm
-			if(window.confirm("本当に活性化しますか")){
+			if (window.confirm("本当に活性化しますか")) {
 				$.ajax({
 					url : '/admin/activityOptionProgress',
 					data : sendData,
@@ -194,25 +232,24 @@
 					dataType : 'html',
 					success : function(data) {
 						console.log(data);
-						fileListReload();
+						optionListReload();
 					}
 				})
 			}
 		}
 	}//activityBtn close
-	
-	
-	function deleteBtn(no,delete_flag){
+
+	function deleteBtn(no, delete_flag) {
 		console.log("deleting btn.........");
 		//////////sending data
-		sendData={
-				"no"  :  no,
-				"delete_flag"  :  delete_flag
+		sendData = {
+			"no" : no,
+			"delete_flag" : delete_flag
 		};
 		/////////////////////////////////locking process	
-		if(delete_flag == '0'){
+		if (delete_flag == '0') {
 			////////confirm
-			if(window.confirm("本当に削除しますか")){
+			if (window.confirm("本当に削除しますか")) {
 				$.ajax({
 					url : '/admin/deleteOptionProgress',
 					data : sendData,
@@ -221,14 +258,14 @@
 					success : function(data) {
 						console.log("deleting ajax.........");
 						console.log(data);
-						fileListReload();
+						optionListReload();
 					}
 				});
 			}
-		///////////////////////////////unlocking process
-		}else{
+			///////////////////////////////unlocking process
+		} else {
 			/////////confirm
-			if(window.confirm("本当に活性化しますか")){
+			if (window.confirm("本当に活性化しますか")) {
 				$.ajax({
 					url : '/admin/deleteOptionProgress',
 					data : sendData,
@@ -236,11 +273,80 @@
 					dataType : 'html',
 					success : function(data) {
 						console.log(data);
-						fileListReload();
+						optionListReload();
 					}
 				})
 			}
 		}
 	}//activityBtn close
-	
+
+	function modifyBtn(no) {
+		sendData = {
+			"no" : no,
+			"cost" : $("input[name=cost][data-no="+no+"]").val()
+		};
+		console.log(sendData);
+
+		if (window.confirm("本当に修正しますか")) {
+			$.ajax({
+				url : '/admin/modifyOptionProgress',
+				data : sendData,
+				type : 'POST',
+				dataType : 'html',
+				success : function(data) {
+					optionListReload();
+				}
+			})
+		}
+	}
+
+	$(".addModalBtn").click(function() {
+		$(".modal").fadeIn();
+	});
+
+	$("#escapeFromModalBtn").click(function() {
+		$(".modal").fadeOut();
+	});
+
+	$("#addBtn").click(function() {
+		sendData = {
+			"item" : $("#addItem").val(),
+			"cost" : $("#addCost").val()
+		};
+		$.ajax({
+			url : '/admin/addOptionProgress',
+			data : sendData,
+			type : 'POST',
+			dataType : 'html',
+			success : function(data) {
+				optionListReload();
+			}
+		})
+		$(".modal").fadeOut();
+	});
 </script>
+<style>
+.modal {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+.modal_content {
+	width: 80%;
+	background: #fff;
+	border-radius: 10px;
+	position: relative;
+	top: 20%;
+	left: 10%;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 74px 0;
+	line-height: 23px;
+	cursor: pointer;
+}
+</style>

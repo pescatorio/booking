@@ -19,7 +19,7 @@
 						<div class="col-2 align-items-right">
 							<c:choose>
 								<c:when test="${empty vo}">
-									<input type="submit" class="btn btn-outline-info btn-sm mb-0" value="作成">
+									<input type="button" class="btn btn-outline-info btn-sm mb-0" id="addBtn" value="作成">
 								</c:when>
 								<c:otherwise>
 									<input type="button" class="btn btn-outline-info btn-sm mb-0" onClick="replyBtn('/consultation/replyConsultationProgress')" value="返信">
@@ -90,8 +90,25 @@ if('${resMsg}' != ''){
 	alert('${resMsg}');	
 }
 
+$("#addBtn").click(function(){
+	if(nullEmptyCheck("題目",$("[name=title]").val())==false){return false;};
+	if(nullEmptyCheck("内容",$("[name=contents]").val())==false){return false;};
+	document.addConsultationForm.submit();
+});
+
 function replyBtn(url) {
+	if(nullEmptyCheck("題目",$("[name=title]").val())==false){return false;};
+	if(nullEmptyCheck("内容",$("[name=contents]").val())==false){return false;};
 	document.addConsultationForm.action = url;
 	document.addConsultationForm.submit();
 }
+
+function nullEmptyCheck(id,value){ 
+	if( value == "" || value == null || value == undefined ){
+		alert(id+"を入力してください");
+		return false;
+	}else{
+		return true;
+	}
+};
 </script>

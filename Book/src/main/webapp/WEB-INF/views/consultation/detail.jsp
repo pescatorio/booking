@@ -72,11 +72,11 @@
 						</tbody>
 					</table>
 					<p class="btn_pop_page">
-						<button class="button_gray"
+						<button class="btn btn-secondary"
 							onClick="listBtn('/consultation/page')">目次</button>
-						<button class="button_gray"
+						<button class="btn btn-primary"
 							onClick="modifyBtn('/consultation/modifyConsultation')">修正</button>
-						<button class="button_gray"
+						<button class="btn btn-success"
 							onClick="replyBtn('/consultation/replyConsultation')">返信</button>
 					</p>
 					<form method="get" name="detailForm" id="modifyNotice">

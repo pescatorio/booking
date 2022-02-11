@@ -22,4 +22,5 @@ public interface OptionsMapper {
 	public int activityOptions(OptionsVO vo);
 	
 	public int insertOptions(OptionsVO vo);
+	
 }

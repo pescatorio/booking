@@ -21,7 +21,7 @@
 				class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 				<li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
 				<li><a href="/map/page" class="nav-link px-2 text-white">地図</a></li>
-				<li><a href="/roomInfo/page" class="nav-link px-2 text-white">要約</a></li>
+				<li><a href="/roomInfo/page" class="nav-link px-2 text-white">予約</a></li>
 				<li><a href="/notice/list" class="nav-link px-2 text-white">お知らせ</a></li>
 				<li><a href="/consultation/page"
 					class="nav-link px-2 text-white">相談</a></li>
@@ -30,5 +30,3 @@
 		</div>
 	</div>
 </header>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

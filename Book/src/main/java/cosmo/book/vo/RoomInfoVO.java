@@ -1,6 +1,8 @@
 package cosmo.book.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -39,4 +41,9 @@ public class RoomInfoVO {
 	private Date updated_at;
 	
 	private int build_code;
+	
+	private ArrayList<String> tmpImages;
+	
+	private List<String> startToEnd;
+	
 }

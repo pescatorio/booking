@@ -47,4 +47,6 @@ public class BookingVO {
 	private Date updated_at;
 	
 	private int build_code;
+	
+	private String tmpColor;
 }

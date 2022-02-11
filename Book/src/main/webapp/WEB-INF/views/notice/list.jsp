@@ -1,13 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:useBean id="now" class="java.util.Date" />
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <section class="section__content">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 	<div id="wrapper">
 		<h2 class="page_title">お知らせ</h2>
 		<div id="upper"></div>
@@ -16,21 +13,17 @@
 				<div class="table_data">
 					<table class="list">
 						<colgroup>
-							<col style="width: 10%;">
-							<col style="width: 15%;">
 							<col style="width: 30%;">
-							<col style="width: 10%;">
-							<col style="width: 10%;">
+							<col style="width: 30%;">
+							<col style="width: 20%;">
 							<col style="width: auto;">
 						</colgroup>
 						<thead>
 							<tr>
-								<th>no</th>
 								<th>title</th>
 								<th>contents</th>
 								<th>created_at</th>
 								<th>updated_at</th>
-								<th>build_code</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -43,24 +36,20 @@
 									</c:when>
 									<c:when test="${vo.delete_flag == '1'}">
 										<tr>
-											<td><c:out value="${vo.no}"/></td>
 											<td>deleted</td> 
 											<td>deleted</td>
 											<td><c:out value="${vo.created_at}"/></td>
 											<td><c:out value="${vo.updated_at}"/></td>
-											<td><c:out value="${vo.build_code}"/></td>
 										</tr>
 									</c:when>
 									<c:when test="${vo.delete_flag == '0'}">
 										<tr>
-											<td><c:out value="${vo.no}"/></td>
-											<td onClick=detail("${vo.no}")><a href="#"><c:out value="${vo.title}"/>
+											<td onClick="detail(${vo.no})"><a href="#"><c:out value="${vo.title}"/>
 											<c:if test="${today <= vo.created_at}"><i class="fas fa-plus-square" style="color:#272b2b;"></i></c:if>
 											</a><p style="font-weight:bold;"><i class="fas fa-lock" style="color:#272b2b;"></i></p></td>
 											<td><c:out value="${fn:substring(vo.contents, 0, 100)}"/></td>
 											<td><c:out value="${vo.created_at}"/></td>
 											<td><c:out value="${vo.updated_at}"/></td>
-											<td><c:out value="${vo.build_code}"/></td>
 										</tr>
 									</c:when>
 								</c:choose>
@@ -69,7 +58,11 @@
 					</table>
 				</div>
 			</div>
-
+			<form method="get" name="detailForm">
+				<input type="hidden" name="no" value="${vo.no}">
+				<input type="hidden" name="pageNo" value="${criteria.pageNo}">
+				<input　type="hidden" name="keyword" value="${criteria.keyword}">
+			</form>
 			<div id="pagination-box">
 				<nav style="display: table-cell; vertical-align: middle;">
 					<ul class="pagination centered">
@@ -96,20 +89,20 @@
 			</div>
 		</div>
 	</div>
-	
+	</section>
 <script type="text/javascript">
 if('${resMsg}' != ''){
 	alert('${resMsg}');	
 }
 function page(page){
-	document.listForm.action="/notice/list";
-	document.listForm.pageNo.value=page;
-	document.listForm.submit();
+	document.detailForm.action="/notice/list";
+	document.detailForm.pageNo.value=page;
+	document.detailForm.submit();
 	
 }
 function detail(no){
-	document.listForm.action="/notice/detail";
-	document.listForm.no.value=no;
-	document.listForm.submit();
+	document.detailForm.action="/notice/detail";
+	document.detailForm.no.value=no;
+	document.detailForm.submit();
 }
 </script>

@@ -60,7 +60,7 @@
               <p class="card-text"><c:out value="${rVo.explanation }"></c:out></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="roomInfo/page?"<c:out value="rVo.room_num"></c:out>><button type="button" class="btn btn-sm btn-outline-secondary">要約</button></a>
+                  <a href="roomInfo/page?<c:out value="rVo.room_num"></c:out>"><button type="button" class="btn btn-sm btn-outline-secondary">予約</button></a>
                 </div>
               </div>
             </div>

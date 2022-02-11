@@ -9,13 +9,13 @@
   	</select>
   	
   	<select id="selectOptionsList" resultType="cosmo.book.vo.OptionsVO">
-  		select * from public."options"  order by no asc
+  		select * from public."options"  where delete_flag='0' order by no asc
   	</select>
   
 	<!-- update query -->
 	<update id="updateOptions">
 		update  public."options" 
-		set item=#{item}, cost=#{cost}, updated_at= CURRENT_TIMESTAMP
+		set cost=#{cost}, updated_at= CURRENT_TIMESTAMP
 		where no=#{no} 
 	</update>
 	<!-- delete query -->	

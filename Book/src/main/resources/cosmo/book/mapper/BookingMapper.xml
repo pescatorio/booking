@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cosmo.book.mapper.BookingMapper">
+  	<select id="selectBooking" resultType="cosmo.book.vo.BookingVO">
+  		select * from  public."booking" where no=#{no} and build_code=7 and delete_flag='0' order by no desc
+  	</select>
+  	
+  	<select id="selectBookingList" resultType="cosmo.book.vo.BookingVO">
+  		select * from  public."booking" where build_code=7 and delete_flag='0' order by no desc
+  	</select>
+  	
+  	<select id="selectPeriod" resultType="cosmo.book.vo.BookingPeriodVO">
+  		select room_no,start_date,end_date from  public."booking" where room_no=#{room_no} and build_code=7 and delete_flag='0' and cancel_flag='0' order by room_no desc
+  	</select>
+  	
+	<!-- update query -->
+	<update id="updateBooking">
+		update  public."booking" 
+		set adult=#{adult},child=#{child},total_cost=#{total_cost}, updated_at= CURRENT_TIMESTAMP
+		where no=#{no} and build_code=7
+	</update>
+	<!-- activity_flag -->
+	<update id="updateBookingPaymentFlag">
+		update  public."booking" 
+		set payment_flag=#{payment_flag}, updated_at= CURRENT_TIMESTAMP
+		where no=#{no} and build_code=7
+	</update>
+	
+	<update id="updateBookingDeleteFlag">
+		update  public."booking" 
+		set delete_flag=#{delete_flag}, updated_at= CURRENT_TIMESTAMP
+		where no=#{no} and build_code=7
+	</update>
+	
+	<update id="updateBookingCancelFlag">
+		update  public."booking" 
+		set cancel_flag=#{cancel_flag}, updated_at= CURRENT_TIMESTAMP
+		where no=#{no} and build_code=7
+	</update>
+	
+	
+	
+	<insert id="insertBooking">
+		INSERT INTO  public."booking" (no, room_no, name, phone, adult, child, start_date, end_date ,options, payment_flag , total_cost, cancel_flag, bank_name, bank_branch_code, bank_account_number, delete_flag, created_at, updated_at,build_code) 
+		VALUES(nextval('booking_seq'),#{room_no},#{name},#{phone}, #{adult},#{child},#{start_date}, #{end_date}, #{options}, '0', #{total_cost} , '0', #{bank_name}, #{bank_branch_code}, #{bank_account_number}, '0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,7)
+	</insert>
+  
+  
+  </mapper>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import cosmo.book.mapper.RoomInfoMapper;
 import cosmo.book.vo.ImageFile;
+import cosmo.book.vo.OptionsVO;
 import cosmo.book.vo.RoomInfoVO;
 
 @Service
@@ -38,7 +39,7 @@ public class RoomInfoServiceImpl implements RoomInfoService{
 	
 	@Override
 	public List<RoomInfoVO> selectRoomInfoListAtHome() {
-		return rMapper.selectRoomInfoList();
+		return rMapper.selectRoomInfoListAtHome();
 	}
 	
 	@Override
@@ -60,7 +61,12 @@ public class RoomInfoServiceImpl implements RoomInfoService{
 	public int insertRoomInfo(RoomInfoVO vo) {
 		return rMapper.insertRoomInfo(vo);
 	}
-
+	
+	@Override
+	public int updateRoomInfoImage(RoomInfoVO vo) {
+		return rMapper.updateRoomInfoImage(vo);
+	}
+	
 	
 
 	

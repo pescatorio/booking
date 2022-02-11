@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import cosmo.book.vo.OptionsVO;
 import cosmo.book.vo.RoomInfoVO;
 
 @Mapper
@@ -21,4 +22,6 @@ public interface RoomInfoMapper {
 	public int deleteFlagRoomInfo(RoomInfoVO vo);
 	
 	public int insertRoomInfo(RoomInfoVO vo);
+	
+	public int updateRoomInfoImage(RoomInfoVO vo);
 }

@@ -9,10 +9,10 @@
   	</select>
   	
   	<select id="selectRoomInfoList" resultType="cosmo.book.vo.RoomInfoVO">
-  		select * from public."room_Info"  where build_code=7
+  		select * from public."room_Info"  where build_code=7 order by no asc
   	</select>
   	<select id="selectRoomInfoListAtHome" resultType="cosmo.book.vo.RoomInfoVO">
-  		select * from public."room_Info"  where build_code=7 and delete_flag='0'
+  		select * from public."room_Info"  where build_code=7 and delete_flag='0' order by no asc
   	</select>
   
 	<!-- update query -->
@@ -22,6 +22,13 @@
 		color_code=#{color_code}  , updated_at= CURRENT_TIMESTAMP
 		where no=#{no} and build_code=7
 	</update>
+	
+	<!-- update imagefiles -->
+	<update id="updateRoomInfoImage">
+		update public."room_Info"
+		set images=#{images} , updated_at = CURRENT_TIMESTAMP where no=#{no} and build_code=7
+	</update>
+	
 	<!-- delete query -->	
 	<update id="deleteFlagRoomInfo">
 		update  public."room_Info"  set delete_flag=#{delete_flag} where no=#{no} and build_code=7

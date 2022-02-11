@@ -27,6 +27,11 @@ public class SliderImagesServiceImpl implements SliderImagesService{
 	}
 	
 	@Override
+	public  ArrayList <SliderimagesVO> getSliderimagesListAtRoomInfo(){
+		return sMapper.getSliderimagesListAtRoomInfo();
+	}
+	
+	@Override
 	public int getTotal(Criteria cri) {
 		return sMapper.getTotal(cri);
 	}

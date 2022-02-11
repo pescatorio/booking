@@ -1,9 +1,12 @@
+
 <main class="main-content mt-1 border-radius-lg ps ps--active-y">
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 		pageEncoding="UTF-8"%>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="http://code.jquery.com/jquery-latest.js"></script> 
+	<script src="http://code.jquery.com/jquery-latest.js"></script> 
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 	<!-- Navbar -->
 	<nav
 		class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
@@ -24,6 +27,22 @@
 	<div class="container-fluid py-4">
 	<div class="col-lg-12">
 		<div class="card h-100">
+		
+		<!--                    modal for addOption                             -->
+			<div class="modal">
+				<div class="modal_content" title="部屋のイメージList">
+					<label>イメージ</label>&nbsp<input type="button" id="imageUpdateBtn" value="イメージ入力"><input type="button" class="btn btn-warning"
+							id="escapeFromModalBtn" value="取り消し"><br> 
+				      <ul id="sortable" class="list-group">
+				   		<c:forEach items="${sList}" var="sliderImageList">
+						  <li class="list-group-item"><img src="/resources/image/image500X500/<c:out value='${sliderImageList.file_name}'></c:out>" style='width:20%;height:20%;' 
+						  name="imageList" data-imageNo='${sliderImageList.no}'> <input type="checkbox" value='${sliderImageList.no}' name="imageListCheckbox" ></li>
+				    		</c:forEach>
+						</ul>
+					
+				</div>
+			</div>
+		
 			<div class="card-header pb-0 p-3">
 				<div class="row">
 					<div class="col-6 d-flex align-items-center">
@@ -39,6 +58,7 @@
 			<div class="card-body p-3 pb-0">
 			
 				<form name="roomInfoForm" id="roomInfoForm" method="post">
+				<input type="hidden" id="images" name="images">
 					<ul class="list-group">
 						<li	class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
 							<div class="d-flex flex-column">
@@ -54,8 +74,9 @@
 									</select>
 									<input type="text" id="selboxDirect" name="selboxDirect"/>
 							</div>
-							
-							<!-- fileupload -->
+							<div class="d-flex flex-column">
+								<input type="button" class="btn btn-light" value="イメージ" id="imageModalBtn" hidden="true" >
+							</div>
 						</li>
 						<li	class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
 							<div class="d-flex flex-column">
@@ -141,45 +162,7 @@
 
 <script type="text/javascript">
 $(function() {
-	let cloneObj = $(".uploadDiv").clone();
 	let formData = new FormData();
-
-	//fileupload function
-	$("#uploadBtn").on("click", function(e) {
-		let inputFile = $('#uploadFile');
-		let files = inputFile[0].files;
-		var param = {"no":$("#no").val};
-		console.log("files......" + files);
-		let checkFile = $("#uploadFile").val();
-
-		if (!checkFile) {
-			alert("file null");
-			return false;
-		}
-
-		for (let i = 0; i < files.length; i++) {
-			if (!checkExtension(files[i].name, files[i].size)) {
-				return false;
-			}
-			formData.append("uploadFile", files[i]);
-		}
-		$.ajax({
-			url : '/uploadRoomAjaxAction'+'?'+no,
-			processData : false,
-			contentType : false,
-			data : formData,
-			type : 'POST',
-			dataType : 'json',
-			success : function(result) {
-				showUploadedFile(result);
-				$(".uploadDiv").html(cloneObj.html());
-			}
-
-		})//ajax
-	});//uploadBtn
-	
-	
-	
 	$("#selboxDirect").hide();
 	
 	
@@ -191,7 +174,7 @@ $("#room_num").change(function() {
 		$("#updateRoomBtn").attr("hidden",true);
 		$("#deleteRoomBtn").attr("hidden",true);
 		$("#addRoomBtn").attr("hidden",false);
-		
+		$("#imageModalBtn").attr("hidden",true);
 		$("#roomInfoForm")[0].reset();
 		$("#no").val('');
 		$("#created_at").val("2022-01-01");
@@ -202,7 +185,7 @@ $("#room_num").change(function() {
 		$("#updateRoomBtn").attr("hidden",false);
 		$("#deleteRoomBtn").attr("hidden",false);
 		$("#addRoomBtn").attr("hidden",true);
-		
+		$("#imageModalBtn").attr("hidden",false);
 		if($("#delete_flag")=='0'){
 			$("#deleteRoomBtn").val('宿泊施設削除');
 		}else{
@@ -225,19 +208,19 @@ $("#room_num").change(function() {
 			contentType : 'application/json; charset=UTF-8;',
 			success : function(data) {
 				console.log("switchingRoomInfo ajax.........");
-				console.log(data);
-					console.log("data........."+data);
-					$("#no").val(data["no"]);
-					$("#room_title").val(data["room_title"]);
-					$("#max").val(data["max"]);
-					$("#adult_cost").val(data["adult_cost"]);
-					$("#child_cost").val(data["child_cost"]);
-					$("#explanation").val(data["explanation"]);
-					$("#color_code").val(data["color_code"]);
-					$("#created_at").val(data["created_at"]);
-					$("#updated_at").val(data["updated_at"]);
-					$("#delete_flag").val(data["delete_flag"]);
-					$("#build_code").val(data["build_code"]);
+				console.log("data........."+data);
+				$("#no").val(data["no"]);
+				$("#room_title").val(data["room_title"]);
+				$("#max").val(data["max"]);
+				$("#adult_cost").val(data["adult_cost"]);
+				$("#child_cost").val(data["child_cost"]);
+				$("#explanation").val(data["explanation"]);
+				$("#color_code").val(data["color_code"]);
+				$("#created_at").val(data["created_at"]);
+				$("#updated_at").val(data["updated_at"]);
+				$("#delete_flag").val(data["delete_flag"]);
+				$("#build_code").val(data["build_code"]);
+				$("#images").val(data["images"]);
 			}
 		});
 		
@@ -247,38 +230,13 @@ $("#room_num").change(function() {
 
 
 
-//uploadAjax format check
-let regex = new RegExp("(.*?)\.(bmp|gif|jpg|jpeg|png)$");
-let maxSize = 5242880; //5MB
-
-function checkExtension(fileName, fileSize) {
-	if (!regex.test(fileName)) {
-		alert("イメージファイルだけアプロード出来ません");
-		return false;
-	} else if (fileSize >= maxSize) {
-		alert("ファイルのサイズを確認してください");
-		return false;
-	} else {
-		return true;
-	}
-}
-
-//imagelist div  function
-let uploadResult = $("#imageList");
-function showUploadedFile(uploadResultArr) {
-	let str = "";
-	$(uploadResultArr)
-			.each(
-					function(i, obj) {
-
-					});
-	uploadResult.append(str);
-}
-
 
 //addRoominfo progress
 function addRoomBtn(){
+	console.log($("#selboxDirect").val());
 	$("#no").val(0);
+	$("#build_code").val(0);
+	$("#room_num option:selected").val($("#selboxDirect").val());
 	$("#roomInfoForm").attr("action", "addRoomInfoProgress");
 	$("#roomInfoForm").submit();
 } 
@@ -303,4 +261,85 @@ function deleteRoomBtn(){
 		}
 	}
 }
+
+$("#imageModalBtn").click(function() {
+	$(".modal").fadeIn();
+});
+
+$("#escapeFromModalBtn").click(function() {
+	$(".modal").fadeOut();
+});
+
+$("#sortable").sortable();
+
+$("#imageUpdateBtn").click(function() {
+	let imageCheckBox = 'input[name="imageListCheckbox"]:checked';
+	let selectedEls = document.querySelectorAll(imageCheckBox);
+	
+	 let result = '';
+	  selectedEls.forEach((el) => {
+	    result += el.value + '/';
+	  });
+	  
+	  let imageData={
+			"no":$('#room_num option:selected').attr('data-no'),
+			"images":result ,
+	  };
+	  let jsonData=JSON.stringify(imageData);
+		
+		$.ajax({
+			url : '/admin/updateRoomInfoImage',
+			data : imageData ,
+			type : 'POST',
+			dataType : 'json',
+			success : function(data) {
+				console.log("data........."+data);
+				$("#no").val(data["no"]);
+				$("#room_title").val(data["room_title"]);
+				$("#max").val(data["max"]);
+				$("#adult_cost").val(data["adult_cost"]);
+				$("#child_cost").val(data["child_cost"]);
+				$("#explanation").val(data["explanation"]);
+				$("#color_code").val(data["color_code"]);
+				$("#created_at").val(data["created_at"]);
+				$("#updated_at").val(data["updated_at"]);
+				$("#delete_flag").val(data["delete_flag"]);
+				$("#build_code").val(data["build_code"]);
+				$("#images").val(data["images"]);
+				if(data["images"]=='1'){
+					console.log(data["images"]);
+				}
+			}
+		});
+		alert("イメージ入力に成功しました。");
+		$(".modal").fadeOut();
+});
+$("#escapeFromModalBtn").click(function() {
+	$(".modal").fadeOut();
+});
 </script>
+<style>
+.modal {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+.modal_content {
+	width: 80%;
+	height: 60%;
+	background: #fff;
+	border-radius: 10px;
+	position: relative;
+	top: 10%;
+	left: 10%;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 74px 0;
+	line-height: 23px;
+}
+</style>

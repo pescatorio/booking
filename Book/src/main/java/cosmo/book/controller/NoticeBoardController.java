@@ -30,7 +30,6 @@ public class NoticeBoardController {
 	@GetMapping("/list")
 	public String list(Criteria cri,Model model,HttpServletRequest req) throws Exception{
 		logger.info("noticeList...");
-		HttpSession session = req.getSession();
 		model.addAttribute("list",nService.getList(cri));
 		model.addAttribute("pageNavi",new PageNavi(cri,nService.getTotal(cri)));
 		
@@ -38,10 +37,12 @@ public class NoticeBoardController {
 	}
 	
 	@GetMapping("/detail")
-	public String detail(Criteria cri, Model model, NoticeVO vo) {
+	public String detail(Criteria cri, Model model, String no) {
 		logger.info("detail....");
-		vo=nService.selectNotice(vo.getNo());
-		model.addAttribute("vo",vo);
+		System.out.println("no......."+no);
+		NoticeVO nVo=new NoticeVO();
+		nVo=nService.selectNotice(Integer.parseInt(no));
+		model.addAttribute("vo",nVo);
 		
 		return "layout/notice/detail";
 	}
