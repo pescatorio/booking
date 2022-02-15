@@ -131,7 +131,7 @@ public class AdminController {
 		logger.info("adminNoticeDetail...");
 		nService.updateNotice(vo);
 		model.addAttribute("vo",vo);
-		return "redirect:/admin/adminNoticeDetail";
+		return "redirect:/admin/adminNotice";
 	}
 	
 	@PostMapping("/adminDeleteNotice")

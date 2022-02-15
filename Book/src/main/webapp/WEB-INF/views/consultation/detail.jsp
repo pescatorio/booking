@@ -49,7 +49,7 @@
 									</tr>
 									<tr>
 										<th class="nboardGet_th">題目</th>
-										<td><c:forEach var='i' begin='0' end='${vo.depth }'>Re</c:forEach> ${vo.title}</td>
+										<td><c:forEach var='i' begin='1' end='${vo.depth }'>Re</c:forEach> ${vo.title}</td>
 									</tr>
 									<tr>
 										<th class="nboardGet_th">名前</th>

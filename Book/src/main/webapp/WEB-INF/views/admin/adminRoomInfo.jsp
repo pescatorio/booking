@@ -31,7 +31,7 @@
 		<!--                    modal for addOption                             -->
 			<div class="modal">
 				<div class="modal_content" title="部屋のイメージList">
-					<label>イメージ</label>&nbsp<input type="button" id="imageUpdateBtn" value="イメージ入力"><input type="button" class="btn btn-warning"
+					<label>イメージ</label>&nbsp<input class="btn btn-success" type="button" id="imageUpdateBtn" value="イメージ入力"><input type="button" class="btn btn-warning"
 							id="escapeFromModalBtn" value="取り消し"><br> 
 				      <ul id="sortable" class="list-group">
 				   		<c:forEach items="${sList}" var="sliderImageList">
@@ -62,9 +62,9 @@
 					<ul class="list-group">
 						<li	class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
 							<div class="d-flex flex-column">
-								<h6 class="mb-1 text-dark font-weight-bold text-sm">Room</h6>
+								<h6 class="mb-1 text-dark font-weight-bold text-sm">部屋</h6>
 									<input type="text" name="no" id="no" readonly placeholder="no">
-									<h6 class="mb-1 text-dark font-weight-bold text-sm">Room_no</h6>
+									<h6 class="mb-1 text-dark font-weight-bold text-sm">部屋番号</h6>
 									<select id="room_num" name="room_num">
 										<option>選択してください</option>
 										<c:forEach var="roomNoList" items="${rList}">
@@ -84,7 +84,7 @@
 								<input type="text" id="room_title" name="room_title" style="width:15vw;" placeholder="室名">
 							</div>
 							<div class="d-flex flex-column">
-								<h6 class="text-dark mb-1 font-weight-bold text-sm">max</h6>
+								<h6 class="text-dark mb-1 font-weight-bold text-sm">人数</h6>
 								<input type="number" id="max" name="max">
 							</div>
 							<div class="d-flex flex-column">
