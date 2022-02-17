@@ -1,26 +1,27 @@
 # booking
 
-
-Indivisual project that testing at Cosmo.Inc
-Concept: Hotel site that can book hotel rooms.
-Theme: 温泉.
-
+<br><br><br>
+Indivisual project that testing at Cosmo.Inc<br>
+Concept: Hotel site that can book hotel rooms.<br>
+Theme: 温泉.<br>
+<br><br><br>
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-Using Framework & DB & lib,etc....
-
-Springframework 4.0
-postgre Database
-mybatis 3.4.6
-Bootstrap 3
-jquery
-tiles 3
-Fullcalendar
-Datepicker
-
+<br><br><br>
+Using Framework & DB & lib,etc....<br>
+<br>
+Springframework 4.0<br>
+postgre Database<br>
+mybatis 3.4.6<br>
+Bootstrap 3<br>
+jquery<br>
+tiles 3<br>
+Fullcalendar<br>
+Datepicker<br>
+<br><br><br>
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-This project's object is practicing javascript.
-Back sources are not important.
-Just chek view pages.
-Thanks
+<br>
+This project's object is practicing javascript.<br>
+Back sources are not important.<br>
+Just chek view pages.<br>
+Thanks<br>
+<br>
